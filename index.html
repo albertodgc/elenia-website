@@ -1782,9 +1782,9 @@ button { border: none; cursor: pointer; font-family: inherit; }
   .steps-grid { grid-template-columns: 1fr; gap: 32px; max-width: 400px; }
   .steps-grid::before { display: none; }
 
-  .phones-scroll { flex-direction: column; align-items: center; width: 100%; }
+  .phones-scroll { flex-direction: column; align-items: stretch; width: 100%; }
   .phones-scroll .iphone-frame:nth-child(n+2) { display: none; }
-  .phones-scroll .iphone-frame:first-child { width: 100%; max-width: 360px; }
+  .phones-scroll .iphone-frame:first-child { width: 100%; max-width: none; }
 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 
@@ -1805,7 +1805,6 @@ button { border: none; cursor: pointer; font-family: inherit; }
 
 @media (max-width: 480px) {
   .hero h1 { font-size: 28px; }
-  .phones-scroll .iphone-frame:first-child { max-width: 300px; }
   .section-title { font-size: 26px; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
