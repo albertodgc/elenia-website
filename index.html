@@ -200,7 +200,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
    ============================================= */
 .hero {
   position: relative;
-  padding: 140px 24px 90px;
+  padding: 140px 24px 56px;
   overflow: hidden;
   background:
     radial-gradient(ellipse 60% 50% at 85% 10%, rgba(37,211,102,0.28) 0%, transparent 60%),
@@ -605,12 +605,12 @@ button { border: none; cursor: pointer; font-family: inherit; }
    LOGOS BAR — scrolling social proof
    ============================================= */
 .logos-bar {
-  padding: 56px 0 64px;
-  background: var(--gray-950);
-  border-top: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  margin-top: 64px;
+  padding: 40px 0 16px;
   color: white;
   overflow: hidden;
-  position: relative;
+  z-index: 1;
 }
 
 .logos-bar-title {
@@ -618,9 +618,9 @@ button { border: none; cursor: pointer; font-family: inherit; }
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gray-500);
+  color: rgba(255,255,255,0.55);
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   padding: 0 24px;
 }
 
@@ -1825,7 +1825,11 @@ button { border: none; cursor: pointer; font-family: inherit; }
   .mobile-menu-btn { display: block; }
   .navbar-inner { height: 64px; }
 
-  .hero { padding: 120px 20px 80px; }
+  .hero { padding: 120px 20px 48px; }
+  .logos-bar { margin-top: 48px; padding: 32px 0 8px; }
+  .logos-bar-title { font-size: 11px; letter-spacing: 0.18em; }
+  .logo-item { font-size: 18px; }
+  .logos-track { gap: 48px; }
   .hero h1 { font-size: 34px; line-height: 1.15; margin-bottom: 18px; }
   .hero-subtitle { font-size: 15.5px; line-height: 1.7; margin-bottom: 8px; }
   .hero-inner { gap: 0; }
@@ -1962,37 +1966,35 @@ button { border: none; cursor: pointer; font-family: inherit; }
       </div>
     </div>
   </div>
-</section>
 
-<!-- =============================================
-     LOGOS BAR — scrolling social proof
-     ============================================= -->
-<section class="logos-bar" aria-label="Empresas que confían en la tecnología detrás de Elenia">
-  <div class="logos-bar-title">La misma tecnología que</div>
-  <div class="logos-track-wrapper">
-    <div class="logos-track">
-      <!-- Set A -->
-      <span class="logo-item">Bancolombia</span>
-      <span class="logo-item">Rappi</span>
-      <span class="logo-item">Nequi</span>
-      <span class="logo-item">Éxito</span>
-      <span class="logo-item">Davivienda</span>
-      <span class="logo-item">Avianca</span>
-      <span class="logo-item">Falabella</span>
-      <span class="logo-item">Homecenter</span>
-      <span class="logo-item">Mercado Libre</span>
-      <span class="logo-item">Tuya</span>
-      <!-- Set B (duplicate for seamless loop) -->
-      <span class="logo-item" aria-hidden="true">Bancolombia</span>
-      <span class="logo-item" aria-hidden="true">Rappi</span>
-      <span class="logo-item" aria-hidden="true">Nequi</span>
-      <span class="logo-item" aria-hidden="true">Éxito</span>
-      <span class="logo-item" aria-hidden="true">Davivienda</span>
-      <span class="logo-item" aria-hidden="true">Avianca</span>
-      <span class="logo-item" aria-hidden="true">Falabella</span>
-      <span class="logo-item" aria-hidden="true">Homecenter</span>
-      <span class="logo-item" aria-hidden="true">Mercado Libre</span>
-      <span class="logo-item" aria-hidden="true">Tuya</span>
+  <!-- Logos bar lives inside the hero so it shares the gradient -->
+  <div class="logos-bar" aria-label="Empresas que confían en la tecnología detrás de Elenia">
+    <div class="logos-bar-title">La misma tecnología que usan 500+ empresas</div>
+    <div class="logos-track-wrapper">
+      <div class="logos-track">
+        <!-- Set A -->
+        <span class="logo-item">Bancolombia</span>
+        <span class="logo-item">Rappi</span>
+        <span class="logo-item">Nequi</span>
+        <span class="logo-item">Éxito</span>
+        <span class="logo-item">Davivienda</span>
+        <span class="logo-item">Avianca</span>
+        <span class="logo-item">Falabella</span>
+        <span class="logo-item">Homecenter</span>
+        <span class="logo-item">Mercado Libre</span>
+        <span class="logo-item">Tuya</span>
+        <!-- Set B (duplicate for seamless loop) -->
+        <span class="logo-item" aria-hidden="true">Bancolombia</span>
+        <span class="logo-item" aria-hidden="true">Rappi</span>
+        <span class="logo-item" aria-hidden="true">Nequi</span>
+        <span class="logo-item" aria-hidden="true">Éxito</span>
+        <span class="logo-item" aria-hidden="true">Davivienda</span>
+        <span class="logo-item" aria-hidden="true">Avianca</span>
+        <span class="logo-item" aria-hidden="true">Falabella</span>
+        <span class="logo-item" aria-hidden="true">Homecenter</span>
+        <span class="logo-item" aria-hidden="true">Mercado Libre</span>
+        <span class="logo-item" aria-hidden="true">Tuya</span>
+      </div>
     </div>
   </div>
 </section>
