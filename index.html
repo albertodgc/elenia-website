@@ -1760,8 +1760,15 @@ button { border: none; cursor: pointer; font-family: inherit; }
   .mobile-menu-btn { display: block; }
   .navbar-inner { height: 64px; }
 
-  .hero { padding: 120px 20px 72px; }
-  .hero h1 { font-size: 32px; }
+  .hero { padding: 112px 20px 64px; }
+  .hero h1 { font-size: 32px; line-height: 1.15; }
+  .hero-subtitle { font-size: 15px; }
+  .hero-inner { gap: 0; }
+  .hero-features { display: none; }
+  .hero-visual { display: none; }
+  .hero-content { padding: 0 4px; }
+  .hero-trust { font-size: 12.5px; gap: 8px; flex-wrap: wrap; }
+  .hero-trust-avatars span { width: 28px; height: 28px; font-size: 12px; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
 
@@ -1855,7 +1862,6 @@ button { border: none; cursor: pointer; font-family: inherit; }
           <span>▶</span> Ver demo en vivo
         </a>
       </div>
-      <p class="hero-price-line">Desde <strong>$99.000 COP/mes</strong> · Sin contratos · Cancela cuando quieras</p>
       <div class="hero-trust">
         <div class="hero-trust-avatars">
           <span>💅</span>

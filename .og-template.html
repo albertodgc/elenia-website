@@ -13,12 +13,12 @@
   body {
     font-family: 'Inter', -apple-system, system-ui, sans-serif;
     background:
-      radial-gradient(ellipse 65% 55% at 100% 0%, rgba(37,211,102,0.30) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 45% at 0% 100%, rgba(14,165,233,0.18) 0%, transparent 60%),
-      linear-gradient(135deg, #14532D 0%, #030712 100%);
+      radial-gradient(ellipse 70% 60% at 100% 0%, rgba(37,211,102,0.34) 0%, transparent 62%),
+      radial-gradient(ellipse 60% 55% at 0% 100%, rgba(14,165,233,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 40% at 100% 100%, rgba(37,211,102,0.18) 0%, transparent 60%),
+      linear-gradient(135deg, #14532D 0%, #0B2517 55%, #030712 100%);
     color: #fff;
     position: relative;
-    display: flex;
   }
   .dots {
     position: absolute; inset: 0;
@@ -26,41 +26,55 @@
     background-size: 28px 28px;
     pointer-events: none;
   }
+  .glow {
+    position: absolute;
+    width: 520px; height: 520px;
+    right: -120px; top: 50%;
+    transform: translateY(-50%);
+    background: radial-gradient(circle, rgba(37,211,102,0.25) 0%, transparent 65%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+
+  .stage {
+    position: absolute; inset: 0;
+    display: flex;
+    z-index: 2;
+  }
 
   /* Left column: content */
   .left {
-    flex: 0 0 740px;
-    padding: 56px 40px 56px 70px;
+    flex: 0 0 700px;
+    padding: 58px 24px 88px 68px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 22px;
     position: relative;
-    z-index: 2;
   }
-  .top-group { display: flex; flex-direction: column; gap: 28px; }
   .brand-row { display: flex; align-items: center; gap: 18px; }
   .logo {
-    width: 72px; height: 72px; border-radius: 16px;
+    width: 68px; height: 68px; border-radius: 16px;
     background: linear-gradient(135deg, #25D366, #15803D);
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 8px 28px rgba(37,211,102,0.38);
   }
-  .logo svg { width: 44px; height: 44px; }
-  .brand { font-weight: 900; font-size: 42px; letter-spacing: -0.02em; }
+  .logo svg { width: 42px; height: 42px; }
+  .brand { font-weight: 900; font-size: 40px; letter-spacing: -0.02em; }
 
-  .headline-block { }
   .badge {
     display: inline-flex; align-items: center; gap: 9px;
     background: rgba(37,211,102,0.15);
     border: 1px solid rgba(37,211,102,0.4);
     color: #A7F3D0;
     padding: 8px 16px; border-radius: 999px;
-    font-size: 15px; font-weight: 600;
-    margin-bottom: 18px;
+    font-size: 14px; font-weight: 600;
+    align-self: flex-start;
   }
   .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #25D366; box-shadow: 0 0 10px #25D366; }
+
   h1 {
-    font-size: 48px; font-weight: 900; line-height: 1.08;
+    font-size: 52px; font-weight: 900; line-height: 1.05;
     letter-spacing: -0.028em;
   }
   h1 .accent {
@@ -70,71 +84,67 @@
     background-clip: text;
   }
 
-  .footer-row {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 20px;
+  .features {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 2px;
   }
-  .tag {
-    font-size: 15px; color: #D1D5DB; font-weight: 500;
-    line-height: 1.5;
-    white-space: nowrap;
+  .feature {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 999px;
+    font-size: 13.5px; font-weight: 500;
+    color: #E5E7EB;
   }
-  .price {
-    display: flex; flex-direction: column; align-items: flex-start;
-    padding: 12px 20px; border-radius: 14px;
-    background: rgba(37,211,102,0.14);
-    border: 1px solid rgba(37,211,102,0.35);
-    white-space: nowrap;
-  }
-  .price .amount {
-    font-size: 28px; font-weight: 900; color: #34D399;
-    letter-spacing: -0.02em; line-height: 1;
-  }
-  .price .per {
-    font-size: 12px; color: #A7F3D0; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    margin-top: 4px;
+  .feature-icon {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: rgba(37,211,102,0.25);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #34D399; font-size: 10px; font-weight: 900;
+    line-height: 1;
   }
 
-  /* Right column: phone / chat mockup */
+  /* Right column: chat mockup */
   .right {
     flex: 1;
     position: relative;
-    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 40px 48px 90px 8px;
   }
   .chat {
-    width: 400px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.12);
+    width: 408px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.14);
     border-radius: 28px;
-    padding: 22px 22px 28px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    padding: 24px 24px 28px;
+    box-shadow:
+      0 30px 80px -15px rgba(0,0,0,0.6),
+      0 20px 40px -20px rgba(37,211,102,0.35);
     position: relative;
     transform: rotate(2deg);
   }
   .chat-head {
-    display: flex; align-items: center; gap: 10px;
-    padding-bottom: 14px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 16px; margin-bottom: 16px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .avatar {
-    width: 38px; height: 38px; border-radius: 50%;
+    width: 42px; height: 42px; border-radius: 50%;
     background: linear-gradient(135deg, #25D366, #15803D);
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: 800;
+    font-size: 19px; font-weight: 800;
   }
-  .chat-head .name { font-size: 15px; font-weight: 700; }
-  .chat-head .status { font-size: 12px; color: #34D399; margin-top: 1px; display: flex; align-items: center; gap: 5px; }
+  .chat-head .name { font-size: 16px; font-weight: 700; }
+  .chat-head .status { font-size: 12.5px; color: #34D399; margin-top: 2px; display: flex; align-items: center; gap: 5px; }
   .chat-head .status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #34D399; box-shadow: 0 0 8px #34D399; }
-  .bubbles { display: flex; flex-direction: column; gap: 10px; }
+  .bubbles { display: flex; flex-direction: column; gap: 11px; }
   .bubble {
-    max-width: 78%;
-    padding: 10px 14px;
-    border-radius: 14px;
+    max-width: 80%;
+    padding: 11px 15px;
+    border-radius: 15px;
     font-size: 15px;
     line-height: 1.35;
   }
@@ -156,13 +166,46 @@
     margin-top: 3px; display: block; text-align: right;
     font-weight: 500;
   }
+
+  /* Full-width bottom strip — no dead zone */
+  .bottom-strip {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 72px;
+    padding: 0 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(180deg, transparent 0%, rgba(3,7,18,0.55) 60%, rgba(3,7,18,0.88) 100%);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    z-index: 3;
+  }
+  .bottom-strip .url {
+    font-size: 18px; font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.01em;
+  }
+  .bottom-strip .url span { color: #34D399; }
+  .bottom-strip .cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700;
+    color: #A7F3D0;
+  }
+  .bottom-strip .cta .arrow {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(37,211,102,0.28);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #34D399; font-size: 12px; font-weight: 900;
+    line-height: 1;
+  }
 </style>
 </head>
 <body>
   <div class="dots"></div>
+  <div class="glow"></div>
 
-  <div class="left">
-    <div class="top-group">
+  <div class="stage">
+    <div class="left">
       <div class="brand-row">
         <div class="logo">
           <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -175,37 +218,38 @@
         <div class="brand">Elenia</div>
       </div>
 
-      <div class="headline-block">
-        <div class="badge"><span class="dot"></span> La recepcionista #1 por WhatsApp en Colombia</div>
-        <h1>Tu negocio atendido <span class="accent">24/7</span>,<br>sin contratar a nadie.</h1>
+      <div class="badge"><span class="dot"></span> La recepcionista #1 por WhatsApp en Colombia</div>
+      <h1>Tu negocio atendido <span class="accent">24/7</span>,<br>sin contratar a nadie.</h1>
+
+      <div class="features">
+        <span class="feature"><span class="feature-icon">✓</span> Agenda citas</span>
+        <span class="feature"><span class="feature-icon">✓</span> Responde preguntas</span>
+        <span class="feature"><span class="feature-icon">✓</span> Recupera clientes noches y domingos</span>
       </div>
     </div>
 
-    <div class="footer-row">
-      <div class="tag">Agenda citas · Responde preguntas · Recupera clientes</div>
-      <div class="price">
-        <div class="amount">$99.000</div>
-        <div class="per">COP / mes</div>
+    <div class="right">
+      <div class="chat">
+        <div class="chat-head">
+          <div class="avatar">E</div>
+          <div>
+            <div class="name">Elenia</div>
+            <div class="status">en línea</div>
+          </div>
+        </div>
+        <div class="bubbles">
+          <div class="bubble in">Hola, ¿tienen cita para mañana?<span class="time">9:47 p.m.</span></div>
+          <div class="bubble out">¡Claro! Tengo las 10 a.m. o 3 p.m. ¿Cuál le queda mejor?<span class="time">9:47 p.m. ✓✓</span></div>
+          <div class="bubble in">Las 10 porfa 🙌<span class="time">9:48 p.m.</span></div>
+          <div class="bubble out">¡Listo! Queda agendada para mañana a las 10 a.m. ✓<span class="time">9:48 p.m. ✓✓</span></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="right">
-    <div class="chat">
-      <div class="chat-head">
-        <div class="avatar">E</div>
-        <div>
-          <div class="name">Elenia</div>
-          <div class="status">en línea</div>
-        </div>
-      </div>
-      <div class="bubbles">
-        <div class="bubble in">Hola, ¿tienen cita para mañana?<span class="time">9:47 p.m.</span></div>
-        <div class="bubble out">¡Claro! Tengo las 10 a.m. o 3 p.m. ¿Cuál le queda mejor?<span class="time">9:47 p.m. ✓✓</span></div>
-        <div class="bubble in">Las 10 porfa 🙌<span class="time">9:48 p.m.</span></div>
-        <div class="bubble out">¡Listo! Queda agendada para mañana a las 10 a.m. ✓<span class="time">9:48 p.m. ✓✓</span></div>
-      </div>
-    </div>
+  <div class="bottom-strip">
+    <div class="url">elenia<span>.app</span></div>
+    <div class="cta">Prueba 7 días gratis <span class="arrow">→</span></div>
   </div>
 </body>
 </html>
