@@ -2,56 +2,66 @@
 <html lang="es-CO">
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 1200px; height: 630px; }
+  html, body {
+    width: 1200px; height: 630px;
+    overflow: hidden;
+  }
   body {
     font-family: 'Inter', -apple-system, system-ui, sans-serif;
     background:
-      radial-gradient(ellipse at 85% 20%, rgba(37,211,102,0.25) 0%, transparent 55%),
-      radial-gradient(ellipse at 10% 100%, rgba(14,165,233,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 60% at 100% 0%, rgba(37,211,102,0.28) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(14,165,233,0.18) 0%, transparent 60%),
       linear-gradient(135deg, #14532D 0%, #030712 100%);
     color: #fff;
-    padding: 72px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     position: relative;
     overflow: hidden;
   }
   .dots {
     position: absolute; inset: 0;
     background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
-    background-size: 24px 24px;
+    background-size: 28px 28px;
     pointer-events: none;
   }
-  .row { display: flex; align-items: center; gap: 20px; position: relative; z-index: 1; }
+
+  /* Safe zone: all critical content inside center 1000x510 */
+  .safe {
+    position: absolute;
+    inset: 50px 90px;            /* 90px L/R, 50px T/B margins */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  /* Top: logo + brand */
+  .top { display: flex; align-items: center; gap: 20px; }
   .logo {
-    width: 88px; height: 88px; border-radius: 20px;
+    width: 80px; height: 80px; border-radius: 18px;
     background: linear-gradient(135deg, #25D366, #15803D);
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 32px rgba(37,211,102,0.35);
+    box-shadow: 0 10px 32px rgba(37,211,102,0.35);
   }
-  .logo svg { width: 52px; height: 52px; }
-  .brand { font-weight: 900; font-size: 52px; letter-spacing: -0.02em; }
+  .logo svg { width: 48px; height: 48px; }
+  .brand { font-weight: 900; font-size: 48px; letter-spacing: -0.02em; }
+
+  /* Middle: badge + headline */
+  .middle { max-width: 760px; }
   .badge {
     display: inline-flex; align-items: center; gap: 10px;
     background: rgba(37,211,102,0.15);
     border: 1px solid rgba(37,211,102,0.4);
     color: #A7F3D0;
-    padding: 10px 18px; border-radius: 999px;
-    font-size: 18px; font-weight: 600;
-    align-self: flex-start;
-    position: relative; z-index: 1;
-    margin-bottom: 24px;
+    padding: 9px 18px; border-radius: 999px;
+    font-size: 17px; font-weight: 600;
+    margin-bottom: 18px;
   }
   .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #25D366; box-shadow: 0 0 12px #25D366; }
   h1 {
-    font-size: 78px; font-weight: 900; line-height: 1.02;
-    letter-spacing: -0.03em;
-    position: relative; z-index: 1;
-    max-width: 1000px;
+    font-size: 56px; font-weight: 900; line-height: 1.08;
+    letter-spacing: -0.025em;
   }
   h1 .accent {
     background: linear-gradient(135deg, #34D399, #67E8F9);
@@ -59,27 +69,68 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .footer {
+
+  /* Bottom: tagline + price chip */
+  .bottom {
     display: flex; align-items: center; justify-content: space-between;
-    position: relative; z-index: 1;
+    gap: 24px;
   }
-  .tag { font-size: 22px; color: #D1D5DB; font-weight: 500; }
-  .tag strong { color: #fff; font-weight: 700; }
+  .tag { font-size: 19px; color: #D1D5DB; font-weight: 500; max-width: 620px; line-height: 1.4; }
   .price {
-    font-size: 22px; font-weight: 700; color: #fff;
+    display: flex; flex-direction: column; align-items: flex-end;
+    gap: 4px;
+    padding: 14px 22px; border-radius: 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    white-space: nowrap;
+  }
+  .price .amount { font-size: 30px; font-weight: 800; color: #34D399; letter-spacing: -0.01em; }
+  .price .per { font-size: 14px; color: #9CA3AF; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* Decorative chat bubbles — purely visual, sit outside safe zone */
+  .deco {
+    position: absolute;
+    right: -40px; top: 140px;
+    width: 440px; height: 380px;
+    z-index: 1;
+    opacity: 0.85;
+  }
+  .bubble {
+    position: absolute;
+    padding: 14px 18px;
+    border-radius: 16px;
+    font-size: 16px; font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    max-width: 280px;
+  }
+  .bubble.in {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
-    padding: 12px 20px; border-radius: 14px;
-    backdrop-filter: blur(8px);
+    color: #fff;
+    border-top-left-radius: 4px;
   }
-  .price span { color: #34D399; }
+  .bubble.out {
+    background: linear-gradient(135deg, #25D366, #15803D);
+    color: #fff;
+    border-top-right-radius: 4px;
+  }
+  .b1 { top: 0;   right: 120px; }
+  .b2 { top: 88px; right: 0;     }
+  .b3 { top: 188px; right: 140px; }
 </style>
 </head>
 <body>
   <div class="dots"></div>
 
-  <div>
-    <div class="row">
+  <div class="deco">
+    <div class="bubble in  b1">Hola, ¿tienen cita disponible?</div>
+    <div class="bubble out b2">¡Claro! Mañana a las 10 a.m. ✓</div>
+    <div class="bubble in  b3">Perfecto, gracias 🙌</div>
+  </div>
+
+  <div class="safe">
+    <div class="top">
       <div class="logo">
         <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
           <path fill="#fff" d="M32 14c-10.5 0-19 7.6-19 17 0 3.4 1.2 6.6 3.2 9.2L14 50l10.2-2.6c2.4 1 5 1.6 7.8 1.6 10.5 0 19-7.6 19-17S42.5 14 32 14z"/>
@@ -90,16 +141,19 @@
       </div>
       <div class="brand">Elenia</div>
     </div>
-  </div>
 
-  <div>
-    <div class="badge"><span class="dot"></span> La recepcionista #1 por WhatsApp en Colombia</div>
-    <h1>Tu negocio atendido <span class="accent">24/7</span>, sin contratar a nadie.</h1>
-  </div>
+    <div class="middle">
+      <div class="badge"><span class="dot"></span> La recepcionista #1 por WhatsApp en Colombia</div>
+      <h1>Tu negocio atendido <span class="accent">24/7</span>,<br>sin contratar a nadie.</h1>
+    </div>
 
-  <div class="footer">
-    <div class="tag">Agenda citas. Responde preguntas. Recupera clientes.</div>
-    <div class="price"><span>$99.000</span>/mes</div>
+    <div class="bottom">
+      <div class="tag">Agenda citas · Responde preguntas · Recupera clientes</div>
+      <div class="price">
+        <div class="amount">$99.000</div>
+        <div class="per">COP / mes</div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
