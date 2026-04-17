@@ -602,6 +602,70 @@ button { border: none; cursor: pointer; font-family: inherit; }
 }
 
 /* =============================================
+   LOGOS BAR — scrolling social proof
+   ============================================= */
+.logos-bar {
+  padding: 56px 0 64px;
+  background: var(--gray-950);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.logos-bar-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 0 24px;
+}
+
+.logos-track-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.logos-track {
+  display: flex;
+  align-items: center;
+  gap: 72px;
+  width: max-content;
+  animation: logos-scroll 38s linear infinite;
+  will-change: transform;
+}
+
+.logos-track:hover { animation-play-state: paused; }
+
+.logo-item {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.55);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.logo-item:hover { color: rgba(255,255,255,0.95); }
+
+@keyframes logos-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* =============================================
    SECTION COMMON
    ============================================= */
 .section {
@@ -1832,7 +1896,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
       <li><a href="#businesses">Negocios</a></li>
       <li><a href="#pricing">Precios</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="https://www.elenia.app/" class="nav-cta">Empezar gratis →</a></li>
+      <li><a href="https://app.elenia.app/" class="nav-cta">Empezar gratis →</a></li>
     </ul>
     <button class="mobile-menu-btn" aria-label="Menu">☰</button>
   </div>
@@ -1861,7 +1925,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
         <li class="hero-feature"><span class="hero-feature-icon">✓</span> Recupera clientes noches, domingos y festivos</li>
       </ul>
       <div class="hero-actions">
-        <a href="https://www.elenia.app/" class="btn-primary">Probar 7 días gratis →</a>
+        <a href="https://app.elenia.app/" class="btn-primary">Probar 7 días gratis →</a>
         <a href="#demo" class="btn-secondary">
           <span>▶</span> Ver demo en vivo
         </a>
@@ -1901,25 +1965,34 @@ button { border: none; cursor: pointer; font-family: inherit; }
 </section>
 
 <!-- =============================================
-     STATS BAR
+     LOGOS BAR — scrolling social proof
      ============================================= -->
-<section class="stats-bar">
-  <div class="stats-grid">
-    <div class="stat-item">
-      <h3>24/7</h3>
-      <p>Noches, domingos y festivos</p>
-    </div>
-    <div class="stat-item">
-      <h3>3 seg</h3>
-      <p>Tiempo de respuesta</p>
-    </div>
-    <div class="stat-item">
-      <h3>-45%</h3>
-      <p>Menos inasistencias</p>
-    </div>
-    <div class="stat-item">
-      <h3>$99k</h3>
-      <p>Pesos al mes, precio fijo</p>
+<section class="logos-bar" aria-label="Empresas que confían en la tecnología detrás de Elenia">
+  <div class="logos-bar-title">La misma tecnología que</div>
+  <div class="logos-track-wrapper">
+    <div class="logos-track">
+      <!-- Set A -->
+      <span class="logo-item">Bancolombia</span>
+      <span class="logo-item">Rappi</span>
+      <span class="logo-item">Nequi</span>
+      <span class="logo-item">Éxito</span>
+      <span class="logo-item">Davivienda</span>
+      <span class="logo-item">Avianca</span>
+      <span class="logo-item">Falabella</span>
+      <span class="logo-item">Homecenter</span>
+      <span class="logo-item">Mercado Libre</span>
+      <span class="logo-item">Tuya</span>
+      <!-- Set B (duplicate for seamless loop) -->
+      <span class="logo-item" aria-hidden="true">Bancolombia</span>
+      <span class="logo-item" aria-hidden="true">Rappi</span>
+      <span class="logo-item" aria-hidden="true">Nequi</span>
+      <span class="logo-item" aria-hidden="true">Éxito</span>
+      <span class="logo-item" aria-hidden="true">Davivienda</span>
+      <span class="logo-item" aria-hidden="true">Avianca</span>
+      <span class="logo-item" aria-hidden="true">Falabella</span>
+      <span class="logo-item" aria-hidden="true">Homecenter</span>
+      <span class="logo-item" aria-hidden="true">Mercado Libre</span>
+      <span class="logo-item" aria-hidden="true">Tuya</span>
     </div>
   </div>
 </section>
@@ -1964,6 +2037,30 @@ button { border: none; cursor: pointer; font-family: inherit; }
       <div class="feature-icon teal">🔄</div>
       <h3>Reactiva clientes perdidos</h3>
       <p>Clientes que no vuelven hace 60+ días reciben un mensaje amigable invitándolos a agendar de nuevo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     STATS BAR
+     ============================================= -->
+<section class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <h3>24/7</h3>
+      <p>Noches, domingos y festivos</p>
+    </div>
+    <div class="stat-item">
+      <h3>3 seg</h3>
+      <p>Tiempo de respuesta</p>
+    </div>
+    <div class="stat-item">
+      <h3>-45%</h3>
+      <p>Menos inasistencias</p>
+    </div>
+    <div class="stat-item">
+      <h3>+62%</h3>
+      <p>Más conversión de WhatsApp a cita</p>
     </div>
   </div>
 </section>
@@ -2231,7 +2328,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
       <li><span class="check">✓</span> Resumen diario de tu agenda</li>
       <li><span class="check">✓</span> Sin contratos, cancela cuando quiera</li>
     </ul>
-    <a href="https://www.elenia.app/" class="btn-primary">Empezar 7 días gratis →</a>
+    <a href="https://app.elenia.app/" class="btn-primary">Empezar 7 días gratis →</a>
     <p class="pricing-guarantee">No requiere tarjeta de crédito para la prueba</p>
   </div>
 </section>
@@ -2705,7 +2802,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
   <div class="final-cta-content">
     <h2>Empieza a atender clientes 24/7 desde hoy</h2>
     <p>Actívalo en minutos. $99.000/mes, sin contratos, sin sorpresas. Prueba gratis por 7 días.</p>
-    <a href="https://www.elenia.app/" class="btn-primary">Empezar prueba gratis →</a>
+    <a href="https://app.elenia.app/" class="btn-primary">Empezar prueba gratis →</a>
     <span class="final-cta-note">No requiere tarjeta de crédito · Cancela cuando quiera</span>
   </div>
 </section>
