@@ -44,8 +44,8 @@
 
   /* Left column: content */
   .left {
-    flex: 0 0 700px;
-    padding: 58px 24px 88px 68px;
+    flex: 0 0 680px;
+    padding: 58px 24px 58px 68px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,14 +74,17 @@
   .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #25D366; box-shadow: 0 0 10px #25D366; }
 
   h1 {
-    font-size: 52px; font-weight: 900; line-height: 1.05;
+    font-size: 46px; font-weight: 900; line-height: 1.15;
     letter-spacing: -0.028em;
+    padding-bottom: 2px;
   }
   h1 .accent {
     background: linear-gradient(135deg, #34D399, #67E8F9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
+    line-height: 1.15;
   }
 
   .features {
@@ -112,7 +115,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 48px 90px 8px;
+    padding: 40px 48px 40px 8px;
   }
   .chat {
     width: 408px;
@@ -167,37 +170,6 @@
     font-weight: 500;
   }
 
-  /* Full-width bottom strip — no dead zone */
-  .bottom-strip {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 72px;
-    padding: 0 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(180deg, transparent 0%, rgba(3,7,18,0.55) 60%, rgba(3,7,18,0.88) 100%);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    z-index: 3;
-  }
-  .bottom-strip .url {
-    font-size: 18px; font-weight: 800;
-    color: #fff;
-    letter-spacing: 0.01em;
-  }
-  .bottom-strip .url span { color: #34D399; }
-  .bottom-strip .cta {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 15px; font-weight: 700;
-    color: #A7F3D0;
-  }
-  .bottom-strip .cta .arrow {
-    width: 22px; height: 22px; border-radius: 50%;
-    background: rgba(37,211,102,0.28);
-    display: inline-flex; align-items: center; justify-content: center;
-    color: #34D399; font-size: 12px; font-weight: 900;
-    line-height: 1;
-  }
 </style>
 </head>
 <body>
@@ -219,7 +191,7 @@
       </div>
 
       <div class="badge"><span class="dot"></span> La recepcionista #1 por WhatsApp en Colombia</div>
-      <h1>Tu negocio atendido <span class="accent">24/7</span>,<br>sin contratar a nadie.</h1>
+      <h1>Tu negocio atendido <span class="accent">24/7</span>, sin contratar a nadie.</h1>
 
       <div class="features">
         <span class="feature"><span class="feature-icon">✓</span> Agenda citas</span>
@@ -247,9 +219,5 @@
     </div>
   </div>
 
-  <div class="bottom-strip">
-    <div class="url">elenia<span>.app</span></div>
-    <div class="cta">Prueba 7 días gratis <span class="arrow">→</span></div>
-  </div>
 </body>
 </html>

@@ -303,7 +303,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
   flex-wrap: wrap;
   gap: 8px;
   list-style: none;
-  margin: 24px 0 28px;
+  margin: 24px 0 0;
   padding: 0;
   animation: fadeInUp 0.6s ease 0.25s both;
 }
@@ -342,6 +342,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
   justify-content: flex-start;
   gap: 14px;
   flex-wrap: wrap;
+  margin-top: 28px;
   animation: fadeInUp 0.6s ease 0.3s both;
 }
 
@@ -1760,14 +1761,16 @@ button { border: none; cursor: pointer; font-family: inherit; }
   .mobile-menu-btn { display: block; }
   .navbar-inner { height: 64px; }
 
-  .hero { padding: 112px 20px 64px; }
-  .hero h1 { font-size: 32px; line-height: 1.15; }
-  .hero-subtitle { font-size: 15px; }
+  .hero { padding: 120px 20px 80px; }
+  .hero h1 { font-size: 34px; line-height: 1.15; margin-bottom: 18px; }
+  .hero-subtitle { font-size: 15.5px; line-height: 1.7; margin-bottom: 8px; }
   .hero-inner { gap: 0; }
   .hero-features { display: none; }
   .hero-visual { display: none; }
   .hero-content { padding: 0 4px; }
-  .hero-trust { font-size: 12.5px; gap: 8px; flex-wrap: wrap; }
+  .hero-badge { margin-bottom: 22px; font-size: 13px; padding: 7px 16px; }
+  .hero-actions { margin-top: 36px; gap: 12px; }
+  .hero-trust { margin-top: 32px; font-size: 13px; gap: 10px; flex-wrap: wrap; justify-content: center; }
   .hero-trust-avatars span { width: 28px; height: 28px; font-size: 12px; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
