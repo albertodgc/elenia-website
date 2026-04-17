@@ -5,7 +5,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  html, body {
+    width: 1200px; height: 630px;
+    overflow: hidden;
+    background: #030712;
+  }
   body {
     font-family: 'Inter', -apple-system, system-ui, sans-serif;
     background:
@@ -26,13 +30,14 @@
   /* Left column: content */
   .left {
     flex: 0 0 740px;
-    padding: 60px 40px 60px 70px;
+    padding: 56px 40px 56px 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     z-index: 2;
   }
+  .top-group { display: flex; flex-direction: column; gap: 28px; }
   .brand-row { display: flex; align-items: center; gap: 18px; }
   .logo {
     width: 72px; height: 72px; border-radius: 16px;
@@ -157,21 +162,23 @@
   <div class="dots"></div>
 
   <div class="left">
-    <div class="brand-row">
-      <div class="logo">
-        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#fff" d="M32 14c-10.5 0-19 7.6-19 17 0 3.4 1.2 6.6 3.2 9.2L14 50l10.2-2.6c2.4 1 5 1.6 7.8 1.6 10.5 0 19-7.6 19-17S42.5 14 32 14z"/>
-          <circle cx="25" cy="31" r="2.4" fill="#15803D"/>
-          <circle cx="32" cy="31" r="2.4" fill="#15803D"/>
-          <circle cx="39" cy="31" r="2.4" fill="#15803D"/>
-        </svg>
+    <div class="top-group">
+      <div class="brand-row">
+        <div class="logo">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fff" d="M32 14c-10.5 0-19 7.6-19 17 0 3.4 1.2 6.6 3.2 9.2L14 50l10.2-2.6c2.4 1 5 1.6 7.8 1.6 10.5 0 19-7.6 19-17S42.5 14 32 14z"/>
+            <circle cx="25" cy="31" r="2.4" fill="#15803D"/>
+            <circle cx="32" cy="31" r="2.4" fill="#15803D"/>
+            <circle cx="39" cy="31" r="2.4" fill="#15803D"/>
+          </svg>
+        </div>
+        <div class="brand">Elenia</div>
       </div>
-      <div class="brand">Elenia</div>
-    </div>
 
-    <div class="headline-block">
-      <div class="badge"><span class="dot"></span> La recepcionista #1 por WhatsApp en Colombia</div>
-      <h1>Tu negocio atendido <span class="accent">24/7</span>,<br>sin contratar a nadie.</h1>
+      <div class="headline-block">
+        <div class="badge"><span class="dot"></span> La recepcionista #1 por WhatsApp en Colombia</div>
+        <h1>Tu negocio atendido <span class="accent">24/7</span>,<br>sin contratar a nadie.</h1>
+      </div>
     </div>
 
     <div class="footer-row">
