@@ -571,20 +571,13 @@ button { border: none; cursor: pointer; font-family: inherit; }
    STATS BAR — light, prominent
    ============================================= */
 .stats-bar {
-  padding: 88px 24px;
-  background: var(--gray-50);
+  padding: 40px 24px 96px;
   position: relative;
   overflow: hidden;
-}
-
-.stats-bar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
   background:
-    radial-gradient(ellipse 45% 70% at 10% 50%, rgba(37,211,102,0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 45% 70% at 90% 50%, rgba(14,165,233,0.08) 0%, transparent 70%);
-  pointer-events: none;
+    radial-gradient(ellipse 45% 70% at 10% 55%, rgba(37,211,102,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 70% at 90% 55%, rgba(14,165,233,0.10) 0%, transparent 70%),
+    linear-gradient(180deg, #FFFFFF 0%, var(--gray-50) 35%, var(--gray-50) 100%);
 }
 
 .stats-grid {
@@ -631,15 +624,16 @@ button { border: none; cursor: pointer; font-family: inherit; }
 .stat-item:hover::before { transform: scaleX(1); }
 
 .stat-item h3 {
-  font-size: clamp(40px, 5vw, 60px);
+  font-size: clamp(34px, 4.3vw, 52px);
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.15;
   letter-spacing: -0.03em;
   background: linear-gradient(135deg, #15803D, #0EA5E9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  padding-bottom: 2px;
 }
 
 .stat-item p {
