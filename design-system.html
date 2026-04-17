@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elenia — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   DESIGN SYSTEM STYLES
+   ============================================= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Brand Colors — Primary (Green / WhatsApp-aligned) */
+  --green-50: #ECFDF5;
+  --green-100: #D1FAE5;
+  --green-200: #A7F3D0;
+  --green-400: #34D399;
+  --green-500: #25D366;
+  --green-600: #1B9E4B;
+  --green-700: #15803D;
+  --green-800: #166534;
+  --green-900: #14532D;
+
+  /* Neutral (Gray) */
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --gray-950: #030712;
+
+  /* Accent Colors */
+  --blue-50: #EFF6FF;
+  --blue-600: #1D4ED8;
+  --amber-50: #FFFBEB;
+  --rose-50: #FFF1F2;
+  --purple-50: #F5F3FF;
+  --teal-50: #F0FDFA;
+  --cyan: #0EA5E9;
+
+  /* Semantic */
+  --white: #FFFFFF;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--gray-900);
+  background: var(--gray-50);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* =============================================
+   DOCUMENT LAYOUT
+   ============================================= */
+.ds-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--white);
+  border-right: 1px solid var(--gray-200);
+  padding: 32px 0;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.ds-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 24px 24px;
+  border-bottom: 1px solid var(--gray-200);
+  margin-bottom: 24px;
+}
+
+.ds-sidebar-logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--green-500), var(--green-700));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+}
+
+.ds-sidebar-logo span {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.ds-sidebar-logo small {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-400);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ds-nav { list-style: none; }
+
+.ds-nav-group {
+  padding: 0 24px;
+  margin-bottom: 24px;
+}
+
+.ds-nav-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 8px;
+}
+
+.ds-nav a {
+  display: block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.ds-nav a:hover {
+  background: var(--gray-50);
+  color: var(--gray-900);
+}
+
+.ds-main {
+  margin-left: 260px;
+  padding: 48px 56px 120px;
+  max-width: 1060px;
+}
+
+/* =============================================
+   SECTION STYLES
+   ============================================= */
+.ds-section {
+  margin-bottom: 80px;
+  scroll-margin-top: 32px;
+}
+
+.ds-section-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  color: var(--gray-950);
+}
+
+.ds-section-desc {
+  font-size: 16px;
+  color: var(--gray-500);
+  margin-bottom: 40px;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.ds-subsection {
+  margin-bottom: 48px;
+}
+
+.ds-subsection-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--gray-900);
+}
+
+.ds-subsection-desc {
+  font-size: 14.5px;
+  color: var(--gray-500);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.ds-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 12px;
+}
+
+/* Code blocks */
+.ds-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: var(--gray-100);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--gray-700);
+}
+
+.ds-code-block {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: var(--gray-950);
+  color: #E5E7EB;
+  padding: 20px 24px;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.ds-code-block .comment { color: #6B7280; }
+.ds-code-block .prop { color: #67E8F9; }
+.ds-code-block .val { color: #A7F3D0; }
+.ds-code-block .str { color: #FDE68A; }
+
+/* Tables */
+.ds-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.ds-table th {
+  text-align: left;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.ds-table th:first-child { border-radius: 8px 0 0 0; }
+.ds-table th:last-child { border-radius: 0 8px 0 0; }
+
+.ds-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  vertical-align: middle;
+}
+
+.ds-table tr:last-child td { border-bottom: none; }
+
+/* Divider */
+.ds-divider {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 48px 0;
+}
+
+/* =============================================
+   COLOR SWATCHES
+   ============================================= */
+.ds-color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.ds-color-swatch {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+}
+
+.ds-color-swatch-block {
+  height: 72px;
+  width: 100%;
+}
+
+.ds-color-swatch-info {
+  padding: 10px 12px;
+}
+
+.ds-color-swatch-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.ds-color-swatch-hex {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--gray-400);
+}
+
+/* =============================================
+   TYPOGRAPHY SPECIMENS
+   ============================================= */
+.ds-type-specimen {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.ds-type-specimen:last-child { border-bottom: none; }
+
+.ds-type-sample {
+  margin-bottom: 8px;
+}
+
+.ds-type-meta {
+  font-size: 12px;
+  color: var(--gray-400);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* =============================================
+   COMPONENT PREVIEWS
+   ============================================= */
+.ds-preview {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ds-preview-dark {
+  background: var(--gray-950);
+}
+
+.ds-preview-centered {
+  justify-content: center;
+}
+
+.ds-preview-col {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ds-preview-note {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+/* =============================================
+   ACTUAL COMPONENTS (from design system)
+   ============================================= */
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: var(--green-500);
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.35);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--green-600);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+}
+
+.btn-primary.sm { padding: 10px 22px; font-size: 14px; }
+.btn-primary.lg { padding: 18px 40px; font-size: 18px; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: var(--white);
+  color: var(--gray-800);
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gray-400);
+  background: var(--gray-50);
+  transform: translateY(-2px);
+}
+
+.btn-secondary.sm { padding: 10px 22px; font-size: 14px; }
+
+/* Badges / Tags */
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--green-50);
+  border: 1px solid var(--green-200);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-800);
+}
+
+.ds-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green-500);
+  border-radius: 50%;
+}
+
+.ds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--green-50);
+  color: var(--green-700);
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ds-tag.dark {
+  background: rgba(37,211,102,0.15);
+  color: var(--green-400);
+}
+
+.ds-detail-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.ds-detail-tag.auto { background: var(--green-50); color: var(--green-700); }
+.ds-detail-tag.panel { background: var(--blue-50); color: var(--blue-600); }
+
+/* Cards */
+.ds-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  max-width: 340px;
+}
+
+.ds-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-500), var(--cyan));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.ds-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--green-200);
+}
+
+.ds-card:hover::after { transform: scaleX(1); }
+
+.ds-card-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  background: var(--green-50);
+}
+
+.ds-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ds-card p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--gray-500);
+}
+
+/* Dark card */
+.ds-card-dark {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  transition: all 0.3s ease;
+  max-width: 340px;
+}
+
+.ds-card-dark:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(37,211,102,0.3);
+  transform: translateY(-2px);
+}
+
+.ds-card-dark-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(37,211,102,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.ds-card-dark h3 { font-size: 17px; font-weight: 700; color: white; margin-bottom: 8px; }
+.ds-card-dark p { font-size: 14.5px; line-height: 1.6; color: var(--gray-400); }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--green-500), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 0 4px;
+}
+
+/* Stat gradient text */
+.stat-gradient {
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--green-400), #67E8F9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navbar glass */
+.ds-glass-bar {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  font-size: 14px;
+  color: var(--gray-600);
+}
+
+/* Step number */
+.ds-step-number {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--green-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--green-600);
+  box-shadow: var(--shadow-md);
+}
+
+/* Avatar */
+.ds-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 900px) {
+  .ds-sidebar { display: none; }
+  .ds-main { margin-left: 0; padding: 32px 20px 80px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =============================================
+     SIDEBAR NAVIGATION
+     ============================================= -->
+<aside class="ds-sidebar">
+  <div class="ds-sidebar-logo">
+    <div class="ds-sidebar-logo-icon">💬</div>
+    <div>
+      <span>Elenia</span>
+      <small>Design System</small>
+    </div>
+  </div>
+
+  <div class="ds-nav-group">
+    <div class="ds-nav-group-title">Foundation</div>
+    <ul class="ds-nav">
+      <li><a href="#brand">Brand Overview</a></li>
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#spacing">Spacing & Layout</a></li>
+      <li><a href="#radius">Border Radius</a></li>
+      <li><a href="#shadows">Shadows</a></li>
+      <li><a href="#gradients">Gradients</a></li>
+    </ul>
+  </div>
+
+  <div class="ds-nav-group">
+    <div class="ds-nav-group-title">Components</div>
+    <ul class="ds-nav">
+      <li><a href="#buttons">Buttons</a></li>
+      <li><a href="#badges">Badges & Tags</a></li>
+      <li><a href="#cards">Cards</a></li>
+      <li><a href="#navbar">Navbar</a></li>
+      <li><a href="#steps">Steps</a></li>
+      <li><a href="#avatars">Avatars</a></li>
+      <li><a href="#faq">FAQ Accordion</a></li>
+      <li><a href="#pricing">Pricing Card</a></li>
+    </ul>
+  </div>
+
+  <div class="ds-nav-group">
+    <div class="ds-nav-group-title">Patterns</div>
+    <ul class="ds-nav">
+      <li><a href="#sections">Section Layout</a></li>
+      <li><a href="#backgrounds">Backgrounds</a></li>
+      <li><a href="#carousel">Carousel</a></li>
+      <li><a href="#animations">Animations</a></li>
+    </ul>
+  </div>
+
+  <div class="ds-nav-group">
+    <div class="ds-nav-group-title">Brand</div>
+    <ul class="ds-nav">
+      <li><a href="#voice">Voice & Tone</a></li>
+      <li><a href="#copy">Copy Guidelines</a></li>
+      <li><a href="#identity">Colombian Identity</a></li>
+      <li><a href="#tokens">CSS Tokens</a></li>
+    </ul>
+  </div>
+</aside>
+
+<!-- =============================================
+     MAIN CONTENT
+     ============================================= -->
+<main class="ds-main">
+
+  <!-- =============================================
+       BRAND OVERVIEW
+       ============================================= -->
+  <section class="ds-section" id="brand">
+    <div class="ds-section-title">Elenia Design System</div>
+    <div class="ds-section-desc">
+      The complete design language for Elenia — Colombia's #1 WhatsApp recepcionista for local businesses. Use this as a reference for building any brand touchpoint: landing pages, dashboards, emails, social media, print materials.
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Brand Identity</div>
+      <table class="ds-table">
+        <tr><td style="font-weight:600; width:180px;">Name</td><td><strong>Elenia</strong> — A warm, human name. She is the recepcionista: the friendly presence that answers, attends, and never sleeps.</td></tr>
+        <tr><td style="font-weight:600;">Tagline</td><td>Tu recepcionista por WhatsApp</td></tr>
+        <tr><td style="font-weight:600;">Origin</td><td>Hecho con orgullo desde Pereira, el corazón del eje cafetero 🇨🇴</td></tr>
+        <tr><td style="font-weight:600;">Market</td><td>Local service businesses across Colombia (beauty, wellness, barber, professional)</td></tr>
+        <tr><td style="font-weight:600;">Position</td><td>La recepcionista #1 de Colombia por WhatsApp</td></tr>
+        <tr><td style="font-weight:600;">Price</td><td>$99.000 COP/mes — fixed, all-inclusive, no hidden fees</td></tr>
+        <tr><td style="font-weight:600;">Key differentiator</td><td>Works 24/7 — noches, domingos y festivos. Never says "AI" to customers.</td></tr>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Logo Mark</div>
+      <div class="ds-preview">
+        <div style="display:flex; align-items:center; gap:10px; font-weight:800; font-size:22px;">
+          <div style="width:38px; height:38px; background:linear-gradient(135deg, #25D366, #15803D); border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; font-size:20px;">💬</div>
+          Elenia
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; font-weight:800; font-size:32px; margin-left:40px;">
+          <div style="width:48px; height:48px; background:linear-gradient(135deg, #25D366, #15803D); border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; font-size:26px;">💬</div>
+          Elenia
+        </div>
+      </div>
+      <div class="ds-preview-note">Logo icon is a gradient green rounded square with the 💬 speech bubble emoji. The word "Elenia" uses Inter Black (900 weight). Minimum size: 32px icon.</div>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       COLORS
+       ============================================= -->
+  <section class="ds-section" id="colors">
+    <div class="ds-section-title">Colors</div>
+    <div class="ds-section-desc">Green is the primary brand color, aligned with WhatsApp. Gray scale provides structure and readability. Accent colors are used sparingly for categorization.</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Primary — Green</div>
+      <div class="ds-subsection-desc">Used for CTAs, active states, success indicators, and brand emphasis. Derived from WhatsApp's green (#25D366).</div>
+      <div class="ds-color-grid">
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#ECFDF5;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 50</div><div class="ds-color-swatch-hex">#ECFDF5</div></div>
+        </div>
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#D1FAE5;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 100</div><div class="ds-color-swatch-hex">#D1FAE5</div></div>
+        </div>
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#A7F3D0;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 200</div><div class="ds-color-swatch-hex">#A7F3D0</div></div>
+        </div>
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#34D399;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 400</div><div class="ds-color-swatch-hex">#34D399</div></div>
+        </div>
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#25D366;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 500</div><div class="ds-color-swatch-hex">#25D366</div></div>
+        </div>
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#1B9E4B;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 600</div><div class="ds-color-swatch-hex">#1B9E4B</div></div>
+        </div>
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#15803D;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 700</div><div class="ds-color-swatch-hex">#15803D</div></div>
+        </div>
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#166534;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 800</div><div class="ds-color-swatch-hex">#166534</div></div>
+        </div>
+        <div class="ds-color-swatch">
+          <div class="ds-color-swatch-block" style="background:#14532D;"></div>
+          <div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Green 900</div><div class="ds-color-swatch-hex">#14532D</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Neutral — Gray</div>
+      <div class="ds-subsection-desc">Used for text, backgrounds, borders, and structural elements. Gray 900/950 are used for body text and dark sections.</div>
+      <div class="ds-color-grid">
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#F9FAFB;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 50</div><div class="ds-color-swatch-hex">#F9FAFB</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#F3F4F6;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 100</div><div class="ds-color-swatch-hex">#F3F4F6</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#E5E7EB;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 200</div><div class="ds-color-swatch-hex">#E5E7EB</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#D1D5DB;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 300</div><div class="ds-color-swatch-hex">#D1D5DB</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#9CA3AF;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 400</div><div class="ds-color-swatch-hex">#9CA3AF</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#6B7280;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 500</div><div class="ds-color-swatch-hex">#6B7280</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#4B5563;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 600</div><div class="ds-color-swatch-hex">#4B5563</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#374151;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 700</div><div class="ds-color-swatch-hex">#374151</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#1F2937;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 800</div><div class="ds-color-swatch-hex">#1F2937</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#111827;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 900</div><div class="ds-color-swatch-hex">#111827</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#030712;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Gray 950</div><div class="ds-color-swatch-hex">#030712</div></div></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Accent Colors</div>
+      <div class="ds-subsection-desc">Used for icon backgrounds, category tags, and feature card decoration. Always used at the 50 (lightest) level for backgrounds.</div>
+      <div class="ds-color-grid">
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#EFF6FF;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Blue 50</div><div class="ds-color-swatch-hex">#EFF6FF</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#FFFBEB;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Amber 50</div><div class="ds-color-swatch-hex">#FFFBEB</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#FFF1F2;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Rose 50</div><div class="ds-color-swatch-hex">#FFF1F2</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#F5F3FF;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Purple 50</div><div class="ds-color-swatch-hex">#F5F3FF</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#F0FDFA;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Teal 50</div><div class="ds-color-swatch-hex">#F0FDFA</div></div></div>
+        <div class="ds-color-swatch"><div class="ds-color-swatch-block" style="background:#0EA5E9;"></div><div class="ds-color-swatch-info"><div class="ds-color-swatch-name">Cyan</div><div class="ds-color-swatch-hex">#0EA5E9</div></div></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Color Usage Rules</div>
+      <table class="ds-table">
+        <thead><tr><th>Context</th><th>Color</th><th>Token</th></tr></thead>
+        <tbody>
+          <tr><td>Primary CTA background</td><td>Green 500</td><td><code class="ds-code">--green-500</code></td></tr>
+          <tr><td>Primary CTA hover</td><td>Green 600</td><td><code class="ds-code">--green-600</code></td></tr>
+          <tr><td>CTA glow shadow</td><td>Green 500 @ 35%</td><td><code class="ds-code">rgba(37,211,102,0.35)</code></td></tr>
+          <tr><td>Body text</td><td>Gray 900</td><td><code class="ds-code">--gray-900</code></td></tr>
+          <tr><td>Secondary text</td><td>Gray 500</td><td><code class="ds-code">--gray-500</code></td></tr>
+          <tr><td>Muted / meta text</td><td>Gray 400</td><td><code class="ds-code">--gray-400</code></td></tr>
+          <tr><td>Page background</td><td>White</td><td><code class="ds-code">--white</code></td></tr>
+          <tr><td>Alternate section bg</td><td>Gray 50</td><td><code class="ds-code">--gray-50</code></td></tr>
+          <tr><td>Dark section bg</td><td>Gray 950</td><td><code class="ds-code">--gray-950</code></td></tr>
+          <tr><td>Borders</td><td>Gray 200</td><td><code class="ds-code">--gray-200</code></td></tr>
+          <tr><td>Card hover border</td><td>Green 200</td><td><code class="ds-code">--green-200</code></td></tr>
+          <tr><td>Badge background</td><td>Green 50</td><td><code class="ds-code">--green-50</code></td></tr>
+          <tr><td>Badge border</td><td>Green 200</td><td><code class="ds-code">--green-200</code></td></tr>
+          <tr><td>Badge text</td><td>Green 800</td><td><code class="ds-code">--green-800</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       TYPOGRAPHY
+       ============================================= -->
+  <section class="ds-section" id="typography">
+    <div class="ds-section-title">Typography</div>
+    <div class="ds-section-desc">Inter is the sole typeface across all touchpoints. It provides excellent readability at all sizes and weights, and has a modern, neutral character that lets the content speak.</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Typeface</div>
+      <table class="ds-table">
+        <tr><td style="font-weight:600; width:160px;">Family</td><td>Inter</td></tr>
+        <tr><td style="font-weight:600;">Fallback stack</td><td><code class="ds-code">-apple-system, BlinkMacSystemFont, sans-serif</code></td></tr>
+        <tr><td style="font-weight:600;">Weights used</td><td>400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold), 800 (Extrabold), 900 (Black)</td></tr>
+        <tr><td style="font-weight:600;">Rendering</td><td><code class="ds-code">-webkit-font-smoothing: antialiased</code></td></tr>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Type Scale</div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:clamp(36px,5.5vw,64px); font-weight:900; letter-spacing:-0.03em; line-height:1.15;">Hero headline</div>
+        <div class="ds-type-meta">clamp(36px, 5.5vw, 64px) / 900 Black / -0.03em tracking / 1.15 line-height</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:clamp(28px,4vw,44px); font-weight:800; letter-spacing:-0.03em; line-height:1.15;">Section title</div>
+        <div class="ds-type-meta">clamp(28px, 4vw, 44px) / 800 Extrabold / -0.03em tracking / 1.15 line-height</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:22px; font-weight:800;">Pricing card title</div>
+        <div class="ds-type-meta">22px / 800 Extrabold</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:19px; font-weight:700;">Step / subsection title</div>
+        <div class="ds-type-meta">19px / 700 Bold</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:18px; font-weight:700;">Feature card title</div>
+        <div class="ds-type-meta">18px / 700 Bold</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:17px; line-height:1.7; color:#6B7280;">Body large — hero subtitle and section descriptions. Used for key paragraphs that need extra prominence and readability.</div>
+        <div class="ds-type-meta">17px / 400 Regular / 1.7 line-height / Gray 500</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:15px; line-height:1.65; color:#6B7280;">Body — default paragraph text for cards, descriptions, and general content across the platform.</div>
+        <div class="ds-type-meta">15px / 400 Regular / 1.65 line-height / Gray 500</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:14.5px; font-weight:500; color:#4B5563;">Nav link / footer link</div>
+        <div class="ds-type-meta">14.5px / 500 Medium / Gray 600</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:14px; color:#9CA3AF;">Meta / trust text</div>
+        <div class="ds-type-meta">14px / 400 Regular / Gray 400</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:13px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#15803D;">SECTION TAG LABEL</div>
+        <div class="ds-type-meta">13px / 600 Semibold / 0.5px tracking / uppercase / Green 700</div>
+      </div>
+
+      <div class="ds-type-specimen">
+        <div class="ds-type-sample" style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9CA3AF;">NAV GROUP / FOOTER HEADING</div>
+        <div class="ds-type-meta">11-13px / 700 Bold / 0.5-1px tracking / uppercase / Gray 400</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       SPACING & LAYOUT
+       ============================================= -->
+  <section class="ds-section" id="spacing">
+    <div class="ds-section-title">Spacing & Layout</div>
+    <div class="ds-section-desc">Consistent spacing creates visual rhythm. All spacing values are multiples of 4px base unit.</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Layout Constraints</div>
+      <table class="ds-table">
+        <thead><tr><th>Property</th><th>Value</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td>Max content width</td><td><code class="ds-code">1200px</code></td><td>Container, navbar</td></tr>
+          <tr><td>Feature grid max-width</td><td><code class="ds-code">1100px</code></td><td>Card grids, detail grids</td></tr>
+          <tr><td>Steps max-width</td><td><code class="ds-code">1000px</code></td><td>How it works section</td></tr>
+          <tr><td>Text max-width (header)</td><td><code class="ds-code">640px</code></td><td>Section headers, centered text</td></tr>
+          <tr><td>FAQ max-width</td><td><code class="ds-code">740px</code></td><td>FAQ list</td></tr>
+          <tr><td>Pricing card max-width</td><td><code class="ds-code">520px</code></td><td>Single pricing card</td></tr>
+          <tr><td>Container padding</td><td><code class="ds-code">24px</code></td><td>Horizontal padding</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Section Spacing</div>
+      <table class="ds-table">
+        <thead><tr><th>Element</th><th>Padding</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Standard section</td><td><code class="ds-code">100px</code> top/bottom</td><td>Primary vertical rhythm</td></tr>
+          <tr><td>Hero section</td><td><code class="ds-code">160px</code> top, <code class="ds-code">100px</code> bottom</td><td>Extra top for navbar clearance</td></tr>
+          <tr><td>Stats bar</td><td><code class="ds-code">40px</code> top/bottom</td><td>Compact accent bar</td></tr>
+          <tr><td>Footer</td><td><code class="ds-code">64px</code> top, <code class="ds-code">32px</code> bottom</td><td>Generous top, tight bottom</td></tr>
+          <tr><td>Navbar height</td><td><code class="ds-code">72px</code></td><td>64px on mobile</td></tr>
+          <tr><td>Section header to content</td><td><code class="ds-code">64px</code></td><td>margin-bottom on header block</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Grid Gaps</div>
+      <table class="ds-table">
+        <thead><tr><th>Grid</th><th>Gap</th><th>Columns</th></tr></thead>
+        <tbody>
+          <tr><td>Feature cards</td><td><code class="ds-code">24px</code></td><td>3 &rarr; 2 &rarr; 1</td></tr>
+          <tr><td>Business cards</td><td><code class="ds-code">20px</code></td><td>3 &rarr; 2 &rarr; 1</td></tr>
+          <tr><td>Detail features</td><td><code class="ds-code">20px</code></td><td>2 &rarr; 1</td></tr>
+          <tr><td>Steps</td><td><code class="ds-code">40px</code></td><td>3 &rarr; 1</td></tr>
+          <tr><td>Stats</td><td><code class="ds-code">32px</code></td><td>4 &rarr; 2</td></tr>
+          <tr><td>Footer</td><td><code class="ds-code">48px</code></td><td>2fr 1fr 1fr 1fr</td></tr>
+          <tr><td>Testimonial track</td><td><code class="ds-code">24px</code></td><td>Continuous horizontal</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       BORDER RADIUS
+       ============================================= -->
+  <section class="ds-section" id="radius">
+    <div class="ds-section-title">Border Radius</div>
+
+    <div class="ds-preview">
+      <div style="width:80px; height:80px; background:var(--green-100); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--green-800);">8px<br>sm</div>
+      <div style="width:80px; height:80px; background:var(--green-100); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--green-800);">12px<br>md</div>
+      <div style="width:80px; height:80px; background:var(--green-100); border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--green-800);">16px<br>lg</div>
+      <div style="width:80px; height:80px; background:var(--green-100); border-radius:24px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--green-800);">24px<br>xl</div>
+      <div style="width:80px; height:80px; background:var(--green-100); border-radius:9999px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--green-800);">full<br>pill</div>
+    </div>
+
+    <table class="ds-table">
+      <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><code class="ds-code">--radius-sm</code></td><td>8px</td><td>Small UI elements, tags, code blocks</td></tr>
+        <tr><td><code class="ds-code">--radius-md</code></td><td>12px</td><td>Inputs, small cards, highlight blocks</td></tr>
+        <tr><td><code class="ds-code">--radius-lg</code></td><td>16px</td><td>Feature cards, testimonial cards, business cards</td></tr>
+        <tr><td><code class="ds-code">--radius-xl</code></td><td>24px</td><td>Pricing card, large modals</td></tr>
+        <tr><td><code class="ds-code">--radius-full</code></td><td>9999px</td><td>Buttons, badges, tags, pills, avatars</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       SHADOWS
+       ============================================= -->
+  <section class="ds-section" id="shadows">
+    <div class="ds-section-title">Shadows</div>
+    <div class="ds-section-desc">Shadows are subtle and layered. They use low opacity and blue-tinted black for a natural feel. Always use the token, never hardcode.</div>
+
+    <div class="ds-preview" style="gap: 32px;">
+      <div style="width:120px; height:80px; background:white; border-radius:12px; box-shadow:0 1px 2px rgba(0,0,0,0.05); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">sm</div>
+      <div style="width:120px; height:80px; background:white; border-radius:12px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">md</div>
+      <div style="width:120px; height:80px; background:white; border-radius:12px; box-shadow:0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">lg</div>
+      <div style="width:120px; height:80px; background:white; border-radius:12px; box-shadow:0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">xl</div>
+      <div style="width:120px; height:80px; background:white; border-radius:12px; box-shadow:0 25px 50px -12px rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">2xl</div>
+    </div>
+
+    <table class="ds-table">
+      <thead><tr><th>Token</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><code class="ds-code">--shadow-sm</code></td><td>Highlight blocks, subtle elevation</td></tr>
+        <tr><td><code class="ds-code">--shadow-md</code></td><td>Navbar on scroll, step numbers</td></tr>
+        <tr><td><code class="ds-code">--shadow-lg</code></td><td>Card hover, testimonial hover</td></tr>
+        <tr><td><code class="ds-code">--shadow-xl</code></td><td>Feature card hover</td></tr>
+        <tr><td><code class="ds-code">--shadow-2xl</code></td><td>Phone mockup frames</td></tr>
+        <tr><td>CTA glow</td><td><code class="ds-code">0 4px 14px rgba(37,211,102,0.35)</code> — special green glow for primary buttons</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       GRADIENTS
+       ============================================= -->
+  <section class="ds-section" id="gradients">
+    <div class="ds-section-title">Gradients</div>
+
+    <div class="ds-subsection">
+      <div class="ds-preview" style="gap:20px;">
+        <div style="width:180px; height:80px; background:linear-gradient(135deg, #25D366, #0EA5E9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; font-size:13px; font-weight:600;">Brand Gradient</div>
+        <div style="width:180px; height:80px; background:linear-gradient(135deg, #34D399, #67E8F9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; font-size:13px; font-weight:600;">Stat Gradient</div>
+        <div style="width:180px; height:80px; background:linear-gradient(135deg, #25D366, #15803D); border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; font-size:13px; font-weight:600;">Logo Gradient</div>
+        <div style="width:180px; height:80px; background:linear-gradient(135deg, #14532D, #030712); border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; font-size:13px; font-weight:600;">CTA Section</div>
+      </div>
+
+      <table class="ds-table">
+        <thead><tr><th>Name</th><th>CSS</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td>Brand gradient</td><td><code class="ds-code">linear-gradient(135deg, #25D366, #0EA5E9)</code></td><td>Gradient text, card top-border reveal on hover</td></tr>
+          <tr><td>Stat gradient</td><td><code class="ds-code">linear-gradient(135deg, #34D399, #67E8F9)</code></td><td>Stats bar numbers (via background-clip: text)</td></tr>
+          <tr><td>Logo gradient</td><td><code class="ds-code">linear-gradient(135deg, #25D366, #15803D)</code></td><td>Logo icon background</td></tr>
+          <tr><td>CTA section</td><td><code class="ds-code">linear-gradient(135deg, #14532D, #030712)</code></td><td>Final CTA dark section background</td></tr>
+          <tr><td>Hero background</td><td><code class="ds-code">linear-gradient(180deg, #F0FDF8 0%, #ECFDF5 30%, #FFF 100%)</code></td><td>Hero section top-to-bottom green fade</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       BUTTONS
+       ============================================= -->
+  <section class="ds-section" id="buttons">
+    <div class="ds-section-title">Buttons</div>
+    <div class="ds-section-desc">Two button styles: Primary (green, high-emphasis CTA) and Secondary (outlined, low-emphasis). Always pill-shaped (radius-full).</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Primary Button</div>
+      <div class="ds-preview">
+        <button class="btn-primary sm">Small →</button>
+        <button class="btn-primary">Default →</button>
+        <button class="btn-primary lg">Large →</button>
+      </div>
+      <table class="ds-table">
+        <tr><td style="width:160px;">Background</td><td>Green 500 &rarr; Green 600 on hover</td></tr>
+        <tr><td>Text</td><td>White, 700 Bold</td></tr>
+        <tr><td>Padding</td><td>SM: 10px 22px | Default: 16px 32px | LG: 18px 40px</td></tr>
+        <tr><td>Border radius</td><td>9999px (pill)</td></tr>
+        <tr><td>Shadow</td><td><code class="ds-code">0 4px 14px rgba(37,211,102,0.35)</code></td></tr>
+        <tr><td>Hover</td><td>translateY(-2px), stronger shadow</td></tr>
+        <tr><td>Transition</td><td>all 0.25s ease</td></tr>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Secondary Button</div>
+      <div class="ds-preview">
+        <button class="btn-secondary sm">Small</button>
+        <button class="btn-secondary">Default</button>
+      </div>
+      <table class="ds-table">
+        <tr><td style="width:160px;">Background</td><td>White &rarr; Gray 50 on hover</td></tr>
+        <tr><td>Border</td><td>1.5px solid Gray 300 &rarr; Gray 400 on hover</td></tr>
+        <tr><td>Text</td><td>Gray 800, 600 Semibold</td></tr>
+        <tr><td>Hover</td><td>translateY(-2px)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       BADGES & TAGS
+       ============================================= -->
+  <section class="ds-section" id="badges">
+    <div class="ds-section-title">Badges & Tags</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Hero Badge</div>
+      <div class="ds-preview">
+        <div class="ds-badge"><span class="ds-badge-dot"></span> La recepcionista #1 de Colombia</div>
+      </div>
+      <div class="ds-preview-note">Green 50 background, Green 200 border, Green 800 text, pill shape. Animated pulsing dot.</div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Section Tags</div>
+      <div class="ds-preview">
+        <span class="ds-tag">✨ Todo lo que necesitas</span>
+        <span class="ds-tag">📱 Demo en vivo</span>
+        <span class="ds-tag">🚀 Súper fácil</span>
+        <span class="ds-tag">💰 Precio transparente</span>
+      </div>
+      <div class="ds-preview ds-preview-dark">
+        <span class="ds-tag dark">🇨🇴 Para negocios de toda Colombia</span>
+      </div>
+      <div class="ds-preview-note">13px uppercase with 0.5px letter-spacing. Green 50/700 on light, rgba green on dark backgrounds.</div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Detail Tags</div>
+      <div class="ds-preview">
+        <span class="ds-detail-tag auto">Auto</span>
+        <span class="ds-detail-tag panel">Panel</span>
+      </div>
+      <div class="ds-preview-note">11px uppercase. "Auto" = Green 50/700, "Panel" = Blue 50/Blue 600. Used on feature detail cards.</div>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       CARDS
+       ============================================= -->
+  <section class="ds-section" id="cards">
+    <div class="ds-section-title">Cards</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Feature Card (Light)</div>
+      <div class="ds-preview">
+        <div class="ds-card">
+          <div class="ds-card-icon">⚡</div>
+          <h3>Respuestas al instante</h3>
+          <p>Tus clientes reciben respuesta en segundos, a cualquier hora. <strong style="color:var(--gray-700);font-weight:600;">Noches, domingos y festivos.</strong></p>
+        </div>
+      </div>
+      <div class="ds-preview-note">White bg, Gray 200 border, 16px radius, 32px/28px padding. On hover: translateY(-4px), shadow-xl, green-200 border, top gradient bar reveals via scaleX animation.</div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Business Card (Dark)</div>
+      <div class="ds-preview ds-preview-dark">
+        <div class="ds-card-dark">
+          <div class="ds-card-dark-icon">💅</div>
+          <h3>Salones de belleza</h3>
+          <p>Sus clientas le escriben mientras tiene las manos ocupadas. <strong style="color:var(--green-400);font-weight:600;">Cero mensajes sin leer.</strong></p>
+        </div>
+      </div>
+      <div class="ds-preview-note">Semi-transparent white bg (6%), white border (10%). On hover: bg increases to 10%, border turns green at 30%. Bold text uses Green 400.</div>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       NAVBAR
+       ============================================= -->
+  <section class="ds-section" id="navbar">
+    <div class="ds-section-title">Navbar</div>
+    <div class="ds-preview ds-preview-col" style="padding: 0; overflow: hidden; border-radius: 16px;">
+      <div class="ds-glass-bar" style="width:100%; display:flex; align-items:center; justify-content:space-between;">
+        <div style="display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px;">
+          <div style="width:36px; height:36px; background:linear-gradient(135deg, #25D366, #15803D); border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; font-size:17px;">💬</div>
+          Elenia
+        </div>
+        <div style="display:flex; align-items:center; gap:28px; font-size:14px; color:var(--gray-600);">
+          <span>Funciones</span>
+          <span>Demo</span>
+          <span>Precios</span>
+          <span>FAQ</span>
+          <button class="btn-primary sm">Empezar gratis →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ds-preview-note">Fixed position, frosted glass effect: rgba(255,255,255,0.85) + backdrop-filter: blur(16px) saturate(180%). Gains shadow-md on scroll via JS class toggle. Height: 72px (64px on mobile).</div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       STEPS
+       ============================================= -->
+  <section class="ds-section" id="steps">
+    <div class="ds-section-title">Steps</div>
+    <div class="ds-preview ds-preview-centered" style="gap:40px;">
+      <div style="text-align:center;">
+        <div class="ds-step-number">1</div>
+        <div style="margin-top:16px; font-size:17px; font-weight:700;">Step title</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="ds-step-number">2</div>
+        <div style="margin-top:16px; font-size:17px; font-weight:700;">Step title</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="ds-step-number">3</div>
+        <div style="margin-top:16px; font-size:17px; font-weight:700;">Step title</div>
+      </div>
+    </div>
+    <div class="ds-preview-note">80px circle, white bg, 3px Green 200 border, shadow-md. Numbers in Green 600 at 32px/800. Connected by a gradient line (Green 200 &rarr; 400 &rarr; 200) positioned at top:40px between circles. Line hidden on mobile.</div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       AVATARS
+       ============================================= -->
+  <section class="ds-section" id="avatars">
+    <div class="ds-section-title">Avatars</div>
+    <div class="ds-subsection-desc">Testimonial avatars use unique gradient backgrounds per person. Initials in white, 700 weight.</div>
+    <div class="ds-preview">
+      <div class="ds-avatar" style="background: linear-gradient(135deg, #F472B6, #DB2777)">MC</div>
+      <div class="ds-avatar" style="background: linear-gradient(135deg, #818CF8, #6366F1)">AL</div>
+      <div class="ds-avatar" style="background: linear-gradient(135deg, #34D399, #059669)">JD</div>
+      <div class="ds-avatar" style="background: linear-gradient(135deg, #FBBF24, #D97706)">LP</div>
+      <div class="ds-avatar" style="background: linear-gradient(135deg, #FB7185, #E11D48)">VG</div>
+      <div class="ds-avatar" style="background: linear-gradient(135deg, #A78BFA, #7C3AED)">SM</div>
+      <div class="ds-avatar" style="background: linear-gradient(135deg, #F97316, #EA580C)">DR</div>
+      <div class="ds-avatar" style="background: linear-gradient(135deg, #06B6D4, #0891B2)">CR</div>
+    </div>
+    <div class="ds-preview-note">44px circle, 18px/700 text, white. Each gradient pair is unique per testimonial. 135deg angle consistent.</div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       FAQ
+       ============================================= -->
+  <section class="ds-section" id="faq">
+    <div class="ds-section-title">FAQ Accordion</div>
+    <div class="ds-subsection-desc">Questions separated by Gray 200 borders. Chevron rotates 180deg on open. Answer area animates max-height from 0 to 300px over 0.35s ease. Only one item open at a time.</div>
+    <table class="ds-table">
+      <tr><td style="width:180px;">Question font</td><td>17px / 600 Semibold / Gray 900</td></tr>
+      <tr><td>Question padding</td><td>22px vertical</td></tr>
+      <tr><td>Answer font</td><td>15.5px / 400 Regular / Gray 500 / 1.7 line-height</td></tr>
+      <tr><td>Chevron</td><td>24px circle, Gray 100 bg &rarr; Green 50 bg + rotate(180deg) when open</td></tr>
+      <tr><td>Hover state</td><td>Question text turns Green 700</td></tr>
+      <tr><td>Animation</td><td>max-height 0.35s ease</td></tr>
+    </table>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       PRICING
+       ============================================= -->
+  <section class="ds-section" id="pricing">
+    <div class="ds-section-title">Pricing Card</div>
+    <table class="ds-table">
+      <tr><td style="width:180px;">Max width</td><td>520px, centered</td></tr>
+      <tr><td>Border</td><td>2px solid Green 200</td></tr>
+      <tr><td>Radius</td><td>24px</td></tr>
+      <tr><td>Padding</td><td>48px 40px</td></tr>
+      <tr><td>Shadow</td><td><code class="ds-code">0 8px 40px rgba(37,211,102,0.1)</code></td></tr>
+      <tr><td>"Precio unico" badge</td><td>Absolute top, Green 500 bg, white text, pill</td></tr>
+      <tr><td>Price display</td><td>Currency: 24px/700 Gray 700 | Value: clamp(48-64px)/900 Gray 950 | Period: 16px/500 Gray 500</td></tr>
+      <tr><td>Feature list checks</td><td>24px circle, Green 50 bg, Green 600 checkmark</td></tr>
+      <tr><td>CTA</td><td>Full-width primary button, 17px, 18px padding</td></tr>
+      <tr><td>Guarantee text</td><td>13px Gray 400, below CTA</td></tr>
+    </table>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       SECTION LAYOUT PATTERNS
+       ============================================= -->
+  <section class="ds-section" id="sections">
+    <div class="ds-section-title">Section Layout</div>
+    <div class="ds-section-desc">Sections alternate between white, gray-50, and gray-950 backgrounds. Each section follows a consistent header pattern.</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Section Header Pattern</div>
+      <div class="ds-preview-note">Every section header is centered, max-width 640px, and follows this structure: Tag &rarr; Title &rarr; Subtitle, with 64px margin-bottom to content.</div>
+      <div class="ds-code-block">
+<span class="comment">/* Section header anatomy */</span>
+<span class="prop">.section-tag</span>     <span class="comment">/* 13px uppercase pill badge */</span>
+<span class="prop">.section-title</span>   <span class="comment">/* clamp(28-44px) / 800 / -0.03em */</span>
+<span class="prop">.section-subtitle</span><span class="comment">/* 17px / Gray 500 / 1.7 lh */</span>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Background Alternation</div>
+      <table class="ds-table">
+        <thead><tr><th>Section</th><th>Background</th></tr></thead>
+        <tbody>
+          <tr><td>Hero</td><td>Gradient: #F0FDF8 &rarr; #ECFDF5 &rarr; white + dot grid overlay</td></tr>
+          <tr><td>Stats bar</td><td>Gray 950 (dark)</td></tr>
+          <tr><td>Features</td><td>White</td></tr>
+          <tr><td>Demo</td><td>Gradient: Gray 50 &rarr; White</td></tr>
+          <tr><td>How it works</td><td>White</td></tr>
+          <tr><td>Business types</td><td>Gray 950 (dark)</td></tr>
+          <tr><td>Pricing</td><td>White</td></tr>
+          <tr><td>Detail features</td><td>White</td></tr>
+          <tr><td>Testimonials</td><td>Gray 50</td></tr>
+          <tr><td>FAQ</td><td>Gray 50</td></tr>
+          <tr><td>Final CTA</td><td>Gradient: Green 900 &rarr; Gray 950 + radial glow</td></tr>
+          <tr><td>Footer</td><td>Gray 950 (dark)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       BACKGROUNDS
+       ============================================= -->
+  <section class="ds-section" id="backgrounds">
+    <div class="ds-section-title">Background Effects</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Dot Grid (Hero)</div>
+      <div class="ds-code-block">
+<span class="prop">background-image</span>: <span class="val">radial-gradient</span>(<span class="str">circle at 1px 1px, #E5E7EB 1px, transparent 0</span>);
+<span class="prop">background-size</span>: <span class="val">40px 40px</span>;
+<span class="prop">opacity</span>: <span class="val">0.5</span>;
+<span class="prop">mask-image</span>: <span class="val">radial-gradient</span>(<span class="str">ellipse 80% 70% at 50% 30%, black 30%, transparent 70%</span>);
+      </div>
+      <div class="ds-preview-note">Subtle dot pattern that fades out via CSS mask. Creates depth without distraction.</div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Radial Glow (CTA Section)</div>
+      <div class="ds-code-block">
+<span class="prop">background</span>: <span class="val">radial-gradient</span>(<span class="str">circle at 30% 50%, rgba(37,211,102,0.12) 0%, transparent 60%</span>);
+      </div>
+      <div class="ds-preview-note">Positioned as ::before pseudo-element, oversized (200% width/height) to bleed naturally.</div>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Frosted Glass (Navbar)</div>
+      <div class="ds-code-block">
+<span class="prop">background</span>: <span class="val">rgba(255,255,255,0.85)</span>;
+<span class="prop">backdrop-filter</span>: <span class="val">blur(16px) saturate(180%)</span>;
+<span class="prop">-webkit-backdrop-filter</span>: <span class="val">blur(16px) saturate(180%)</span>;
+      </div>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       CAROUSEL
+       ============================================= -->
+  <section class="ds-section" id="carousel">
+    <div class="ds-section-title">Testimonial Carousel</div>
+    <div class="ds-section-desc">Two-row infinite scroll marquee. Row 1 scrolls left, Row 2 scrolls right. Pauses on hover. Edge fade masks create the feeling of depth.</div>
+
+    <table class="ds-table">
+      <tr><td style="width:180px;">Card width</td><td>380px (320px on mobile)</td></tr>
+      <tr><td>Gap</td><td>24px</td></tr>
+      <tr><td>Row 1 animation</td><td><code class="ds-code">scroll-left 45s linear infinite</code></td></tr>
+      <tr><td>Row 2 animation</td><td><code class="ds-code">scroll-right 50s linear infinite</code> (slightly slower for visual variety)</td></tr>
+      <tr><td>Row 2 spacing</td><td>margin-top: 24px</td></tr>
+      <tr><td>Pause</td><td><code class="ds-code">animation-play-state: paused</code> on hover</td></tr>
+      <tr><td>Edge fade width</td><td>200px desktop, 60px mobile</td></tr>
+      <tr><td>Edge fade</td><td>Linear gradient from background color to transparent (both sides)</td></tr>
+      <tr><td>Seamless loop</td><td>Cards are duplicated (2x set) so the track is twice as wide. Animation translates -50%.</td></tr>
+    </table>
+
+    <div class="ds-code-block">
+<span class="comment">/* Keyframes */</span>
+@keyframes <span class="prop">scroll-left</span> {
+  0%   { <span class="prop">transform</span>: <span class="val">translateX(0)</span>; }
+  100% { <span class="prop">transform</span>: <span class="val">translateX(-50%)</span>; }
+}
+
+@keyframes <span class="prop">scroll-right</span> {
+  0%   { <span class="prop">transform</span>: <span class="val">translateX(-50%)</span>; }
+  100% { <span class="prop">transform</span>: <span class="val">translateX(0)</span>; }
+}
+
+<span class="comment">/* Edge fade (::before and ::after on wrapper) */</span>
+<span class="prop">background</span>: <span class="val">linear-gradient</span>(<span class="str">90deg, var(--bg) 0%, transparent 100%</span>);
+<span class="prop">width</span>: <span class="val">200px</span>;
+<span class="prop">z-index</span>: <span class="val">2</span>;
+<span class="prop">pointer-events</span>: <span class="val">none</span>;
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       ANIMATIONS
+       ============================================= -->
+  <section class="ds-section" id="animations">
+    <div class="ds-section-title">Animations & Transitions</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Entry Animations (Hero)</div>
+      <table class="ds-table">
+        <thead><tr><th>Element</th><th>Animation</th><th>Delay</th></tr></thead>
+        <tbody>
+          <tr><td>Badge</td><td><code class="ds-code">fadeInDown 0.6s ease</code></td><td>0s</td></tr>
+          <tr><td>Headline</td><td><code class="ds-code">fadeInUp 0.6s ease</code></td><td>0.1s</td></tr>
+          <tr><td>Subtitle</td><td><code class="ds-code">fadeInUp 0.6s ease</code></td><td>0.2s</td></tr>
+          <tr><td>Buttons</td><td><code class="ds-code">fadeInUp 0.6s ease</code></td><td>0.3s</td></tr>
+          <tr><td>Trust line</td><td><code class="ds-code">fadeInUp 0.6s ease</code></td><td>0.4s</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Interactive Transitions</div>
+      <table class="ds-table">
+        <thead><tr><th>Component</th><th>Property</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>All buttons</td><td>all</td><td>0.25s ease</td></tr>
+          <tr><td>Cards (hover lift)</td><td>all</td><td>0.3s ease</td></tr>
+          <tr><td>Card top-bar reveal</td><td>transform (scaleX)</td><td>0.3s ease</td></tr>
+          <tr><td>Nav links</td><td>color</td><td>0.2s</td></tr>
+          <tr><td>Navbar shadow</td><td>box-shadow</td><td>0.3s ease</td></tr>
+          <tr><td>FAQ chevron</td><td>all (rotate)</td><td>0.3s ease</td></tr>
+          <tr><td>FAQ answer</td><td>max-height</td><td>0.35s ease</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Pulsing Dot (Badge)</div>
+      <div class="ds-code-block">
+@keyframes <span class="prop">pulse-dot</span> {
+  0%, 100% { <span class="prop">opacity</span>: <span class="val">1</span>; <span class="prop">transform</span>: <span class="val">scale(1)</span>; }
+  50%      { <span class="prop">opacity</span>: <span class="val">0.6</span>; <span class="prop">transform</span>: <span class="val">scale(1.3)</span>; }
+}
+<span class="comment">/* Applied: animation: pulse-dot 2s infinite; */</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       VOICE & TONE
+       ============================================= -->
+  <section class="ds-section" id="voice">
+    <div class="ds-section-title">Voice & Tone</div>
+    <div class="ds-section-desc">Elenia speaks like a trusted friend who happens to know about business. Warm, direct, Colombian, and never corporate.</div>
+
+    <table class="ds-table">
+      <thead><tr><th style="width:200px;">Principle</th><th>Do</th><th>Don't</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Direct & warm</strong></td><td>"Tus clientes reciben respuesta en segundos"</td><td>"Nuestra plataforma proporciona respuestas automatizadas"</td></tr>
+        <tr><td><strong>Colombian Spanish</strong></td><td>"por la tardecita", "le queda bien", "porfa"</td><td>Spain Spanish or overly formal Latin American</td></tr>
+        <tr><td><strong>Results over features</strong></td><td>"Te levantas con citas nuevas agendadas"</td><td>"Sistema de agendamiento integrado con notificaciones push"</td></tr>
+        <tr><td><strong>Concrete numbers</strong></td><td>"Las inasistencias bajan hasta un 45%"</td><td>"Reduce significativamente las inasistencias"</td></tr>
+        <tr><td><strong>Second person (usted/tú)</strong></td><td>"Tu negocio atendido", "Esto es para usted"</td><td>"Los usuarios pueden configurar..."</td></tr>
+        <tr><td><strong>Never say "AI"</strong></td><td>"recepcionista", "recepcionista virtual", "tu empleada"</td><td>"inteligencia artificial", "IA", "AI", "bot", "chatbot"</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       COPY GUIDELINES
+       ============================================= -->
+  <section class="ds-section" id="copy">
+    <div class="ds-section-title">Copy Guidelines</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Headline Formulas</div>
+      <table class="ds-table">
+        <thead><tr><th>Pattern</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Outcome + "sin" + friction</td><td>"Tu negocio atendido 24/7, sin contratar a nadie"</td></tr>
+          <tr><td>Action + timeframe</td><td>"Actívalo hoy, esta noche ya está atendiendo"</td></tr>
+          <tr><td>Conditional + "esto es para usted"</td><td>"Si agenda citas y le escriben por WhatsApp, esto es para usted"</td></tr>
+          <tr><td>Comparison to human</td><td>"Una empleada 24/7 por menos de lo que imagina"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Key Phrases to Reuse</div>
+      <table class="ds-table">
+        <tbody>
+          <tr><td style="width:250px;">"Noches, domingos y festivos"</td><td>24/7 availability in Colombian context</td></tr>
+          <tr><td>"Sin contratos, sin sorpresas"</td><td>Trust / no lock-in</td></tr>
+          <tr><td>"$99.000/mes, precio fijo"</td><td>Always mention price simply</td></tr>
+          <tr><td>"Cero mensajes sin leer"</td><td>No missed customers</td></tr>
+          <tr><td>"Te levantas con citas agendadas"</td><td>Works while you sleep</td></tr>
+          <tr><td>"No requiere tarjeta de crédito"</td><td>Zero friction trial</td></tr>
+          <tr><td>"Hecho con orgullo desde Pereira"</td><td>Colombian origin pride</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">CTA Copy</div>
+      <table class="ds-table">
+        <thead><tr><th>Context</th><th>CTA Text</th></tr></thead>
+        <tbody>
+          <tr><td>Primary (hero/final)</td><td>"Empezar prueba gratis →" or "Probar 7 días gratis →"</td></tr>
+          <tr><td>Secondary</td><td>"Ver demo en vivo"</td></tr>
+          <tr><td>Navbar</td><td>"Empezar gratis →"</td></tr>
+          <tr><td>Pricing card</td><td>"Empezar 7 días gratis →"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       COLOMBIAN IDENTITY
+       ============================================= -->
+  <section class="ds-section" id="identity">
+    <div class="ds-section-title">Colombian Identity</div>
+    <div class="ds-section-desc">Elenia is proudly Colombian. The brand should feel local, trustworthy, and relatable to business owners across the country.</div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Geographic References</div>
+      <table class="ds-table">
+        <thead><tr><th>Element</th><th>Text</th></tr></thead>
+        <tbody>
+          <tr><td>Hero badge</td><td>"La recepcionista #1 de Colombia por WhatsApp"</td></tr>
+          <tr><td>Trust line</td><td>"500 negocios colombianos"</td></tr>
+          <tr><td>Business section</td><td>"De Pereira a Bogota, de Medellin a Barranquilla"</td></tr>
+          <tr><td>Footer origin</td><td>"Hecho con orgullo desde Pereira, el corazon del eje cafetero" 🇨🇴</td></tr>
+          <tr><td>Testimonials</td><td>Cities: Medellin, Bogota, Cali, Barranquilla, Pereira, Bucaramanga, Envigado, Armenia, Manizales, Cartagena, Santa Marta</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <div class="ds-subsection-title">Colombian Context Rules</div>
+      <table class="ds-table">
+        <tbody>
+          <tr><td style="width:200px;">Currency</td><td>Always display in Colombian pesos with period as thousands separator: <strong>$99.000</strong>, <strong>$45.000</strong>, <strong>$65.000</strong></td></tr>
+          <tr><td>Holidays</td><td>Reference "festivos" (Colombian public holidays), Semana Santa, Navidad</td></tr>
+          <tr><td>Time format</td><td>12-hour with "a.m." and "p.m." (Colombian convention)</td></tr>
+          <tr><td>Address style</td><td>Use "usted" for formal/respect, "tu" for casual — mix both naturally as Colombians do</td></tr>
+          <tr><td>Legal</td><td>"Tratamiento de datos" (Colombian data protection language, per Ley 1581)</td></tr>
+          <tr><td>Flag</td><td>Use 🇨🇴 emoji sparingly — footer and origin badge only</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="ds-divider">
+
+  <!-- =============================================
+       CSS TOKENS (full reference)
+       ============================================= -->
+  <section class="ds-section" id="tokens">
+    <div class="ds-section-title">CSS Tokens</div>
+    <div class="ds-section-desc">Copy-paste ready. These are the complete CSS custom properties that define the Elenia design system.</div>
+
+    <div class="ds-code-block">
+<span class="comment">/* =============================================
+   ATIENDE DESIGN TOKENS
+   Complete CSS custom properties reference
+   ============================================= */</span>
+
+:root {
+  <span class="comment">/* Primary — Green (WhatsApp-aligned) */</span>
+  <span class="prop">--green-50</span>:  <span class="val">#ECFDF5</span>;
+  <span class="prop">--green-100</span>: <span class="val">#D1FAE5</span>;
+  <span class="prop">--green-200</span>: <span class="val">#A7F3D0</span>;
+  <span class="prop">--green-400</span>: <span class="val">#34D399</span>;
+  <span class="prop">--green-500</span>: <span class="val">#25D366</span>;  <span class="comment">/* Primary CTA */</span>
+  <span class="prop">--green-600</span>: <span class="val">#1B9E4B</span>;  <span class="comment">/* CTA hover */</span>
+  <span class="prop">--green-700</span>: <span class="val">#15803D</span>;
+  <span class="prop">--green-800</span>: <span class="val">#166534</span>;
+  <span class="prop">--green-900</span>: <span class="val">#14532D</span>;
+
+  <span class="comment">/* Neutral — Gray */</span>
+  <span class="prop">--gray-50</span>:  <span class="val">#F9FAFB</span>;  <span class="comment">/* Alt section bg */</span>
+  <span class="prop">--gray-100</span>: <span class="val">#F3F4F6</span>;
+  <span class="prop">--gray-200</span>: <span class="val">#E5E7EB</span>;  <span class="comment">/* Borders */</span>
+  <span class="prop">--gray-300</span>: <span class="val">#D1D5DB</span>;
+  <span class="prop">--gray-400</span>: <span class="val">#9CA3AF</span>;  <span class="comment">/* Muted text */</span>
+  <span class="prop">--gray-500</span>: <span class="val">#6B7280</span>;  <span class="comment">/* Secondary text */</span>
+  <span class="prop">--gray-600</span>: <span class="val">#4B5563</span>;  <span class="comment">/* Nav links */</span>
+  <span class="prop">--gray-700</span>: <span class="val">#374151</span>;
+  <span class="prop">--gray-800</span>: <span class="val">#1F2937</span>;
+  <span class="prop">--gray-900</span>: <span class="val">#111827</span>;  <span class="comment">/* Body text */</span>
+  <span class="prop">--gray-950</span>: <span class="val">#030712</span>;  <span class="comment">/* Dark sections */</span>
+
+  <span class="comment">/* Accent (icon backgrounds) */</span>
+  <span class="prop">--blue-50</span>:   <span class="val">#EFF6FF</span>;
+  <span class="prop">--amber-50</span>:  <span class="val">#FFFBEB</span>;
+  <span class="prop">--rose-50</span>:   <span class="val">#FFF1F2</span>;
+  <span class="prop">--purple-50</span>: <span class="val">#F5F3FF</span>;
+  <span class="prop">--teal-50</span>:   <span class="val">#F0FDFA</span>;
+  <span class="prop">--cyan</span>:      <span class="val">#0EA5E9</span>;  <span class="comment">/* Gradient endpoint */</span>
+
+  <span class="comment">/* Semantic */</span>
+  <span class="prop">--white</span>: <span class="val">#FFFFFF</span>;
+
+  <span class="comment">/* Border Radius */</span>
+  <span class="prop">--radius-sm</span>:   <span class="val">8px</span>;
+  <span class="prop">--radius-md</span>:   <span class="val">12px</span>;
+  <span class="prop">--radius-lg</span>:   <span class="val">16px</span>;
+  <span class="prop">--radius-xl</span>:   <span class="val">24px</span>;
+  <span class="prop">--radius-full</span>: <span class="val">9999px</span>;
+
+  <span class="comment">/* Shadows */</span>
+  <span class="prop">--shadow-sm</span>:  <span class="val">0 1px 2px rgba(0,0,0,0.05)</span>;
+  <span class="prop">--shadow-md</span>:  <span class="val">0 4px 6px -1px rgba(0,0,0,0.07),
+                0 2px 4px -2px rgba(0,0,0,0.05)</span>;
+  <span class="prop">--shadow-lg</span>:  <span class="val">0 10px 15px -3px rgba(0,0,0,0.08),
+                0 4px 6px -4px rgba(0,0,0,0.04)</span>;
+  <span class="prop">--shadow-xl</span>:  <span class="val">0 20px 25px -5px rgba(0,0,0,0.08),
+                0 8px 10px -6px rgba(0,0,0,0.04)</span>;
+  <span class="prop">--shadow-2xl</span>: <span class="val">0 25px 50px -12px rgba(0,0,0,0.15)</span>;
+}
+    </div>
+  </section>
+
+  <!-- =============================================
+       RESPONSIVE BREAKPOINTS
+       ============================================= -->
+  <section class="ds-section">
+    <div class="ds-section-title">Responsive Breakpoints</div>
+    <table class="ds-table">
+      <thead><tr><th>Breakpoint</th><th>Width</th><th>Key Changes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Desktop</strong></td><td>&gt; 1024px</td><td>Full layout: 3-column grids, side-by-side demo, full nav</td></tr>
+        <tr><td><strong>Tablet</strong></td><td>&le; 1024px</td><td>Demo stacks vertically, grids go to 2 columns</td></tr>
+        <tr><td><strong>Mobile</strong></td><td>&le; 768px</td><td>Nav collapses to hamburger, grids to 1 column, buttons go full-width, carousel fade narrows to 60px</td></tr>
+        <tr><td><strong>Small mobile</strong></td><td>&le; 480px</td><td>Tighter type sizes, phone mockup shrinks to 260px, footer goes single column</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+</body>
+</html>
