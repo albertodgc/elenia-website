@@ -2,7 +2,7 @@
 <html lang="es-CO">
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Sora:wght@600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body {
@@ -54,15 +54,26 @@
     gap: 22px;
     position: relative;
   }
-  .brand-row { display: flex; align-items: center; gap: 18px; }
-  .logo {
-    width: 68px; height: 68px; border-radius: 16px;
-    background: linear-gradient(135deg, #25D366, #15803D);
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 28px rgba(37,211,102,0.38);
+  .brand-row {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.22em;
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #fff;
+    font-size: 56px;
   }
-  .logo svg { width: 42px; height: 42px; }
-  .brand { font-weight: 900; font-size: 40px; letter-spacing: -0.02em; }
+  .brand-row .pulse {
+    display: inline-block;
+    width: 0.1em; height: 0.1em;
+    background: #25D366;
+    border-radius: 50%;
+    align-self: center;
+    transform: translateY(0.02em);
+    box-shadow: 0 0 0 4px rgba(37,211,102,0.22);
+  }
 
   .badge {
     display: inline-flex; align-items: center; gap: 9px;
@@ -175,17 +186,7 @@
 
   <div class="stage">
     <div class="left">
-      <div class="brand-row">
-        <div class="logo">
-          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#fff" d="M32 14c-10.5 0-19 7.6-19 17 0 3.4 1.2 6.6 3.2 9.2L14 50l10.2-2.6c2.4 1 5 1.6 7.8 1.6 10.5 0 19-7.6 19-17S42.5 14 32 14z"/>
-            <circle cx="25" cy="31" r="2.4" fill="#15803D"/>
-            <circle cx="32" cy="31" r="2.4" fill="#15803D"/>
-            <circle cx="39" cy="31" r="2.4" fill="#15803D"/>
-          </svg>
-        </div>
-        <div class="brand">Elenia</div>
-      </div>
+      <div class="brand-row">Elenia<span class="pulse"></span></div>
 
       <div class="badge"><span class="dot"></span> La recepcionista #1 por WhatsApp en Colombia</div>
       <h1>Tu negocio atendido <span class="accent">24/7</span>, sin contratar a nadie.</h1>

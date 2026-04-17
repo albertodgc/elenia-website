@@ -29,7 +29,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =============================================
    CSS RESET & VARIABLES
@@ -132,25 +132,80 @@ button { border: none; cursor: pointer; font-family: inherit; }
   padding: 0 24px;
 }
 
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 800;
-  font-size: 22px;
+/* =============================================
+   ELENIA LOGO — Sora 600 wordmark + live green pulse
+   (source: Logo Final design handoff)
+   ============================================= */
+.elenia-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.22em;
+  font-family: 'Sora', -apple-system, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
   color: var(--gray-900);
+  text-decoration: none;
 }
 
-.nav-logo-icon {
-  width: 38px;
-  height: 38px;
-  background: linear-gradient(135deg, var(--green-500), var(--green-700));
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 20px;
+.elenia-logo .pulse {
+  display: inline-block;
+  width: 0.1em;
+  height: 0.1em;
+  min-width: 3px;
+  min-height: 3px;
+  background: var(--green-500);
+  border-radius: 50%;
+  align-self: center;
+  flex-shrink: 0;
+  transform: translateY(0.02em);
+  position: relative;
+}
+
+.elenia-logo .pulse::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(37, 211, 102, 0.55);
+  animation: elenia-pulse 2.2s infinite;
+  pointer-events: none;
+}
+
+/* Ring only animates on larger sizes (hero / xl) */
+.elenia-logo.s-lg .pulse::before,
+.elenia-logo.s-md .pulse::before,
+.elenia-logo.s-sm .pulse::before { display: none; }
+
+@keyframes elenia-pulse {
+  0%   { transform: scale(0.55); opacity: 1; }
+  100% { transform: scale(2.5);  opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elenia-logo .pulse::before { animation: none; }
+}
+
+/* Size variants per spec */
+.elenia-logo.s-xl { font-size: 72px; }
+.elenia-logo.s-lg { font-size: 44px; }
+.elenia-logo.s-md { font-size: 24px; }
+.elenia-logo.s-sm { font-size: 16px; }
+
+.elenia-logo.on-dark { color: var(--white); }
+
+/* Nav + footer-brand stack uses the logo directly */
+.nav-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.22em;
+  font-family: 'Sora', -apple-system, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--gray-900);
+  font-size: 26px;
+  text-decoration: none;
 }
 
 .nav-links {
@@ -1937,9 +1992,8 @@ button { border: none; cursor: pointer; font-family: inherit; }
      ============================================= -->
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">💬</div>
-      Elenia
+    <a href="#" class="elenia-logo s-md" aria-label="Elenia — inicio">
+      Elenia<span class="pulse" aria-hidden="true"></span>
     </a>
     <ul class="nav-links">
       <li><a href="#features">Funciones</a></li>
@@ -2862,9 +2916,8 @@ button { border: none; cursor: pointer; font-family: inherit; }
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="#" class="nav-logo" style="color: white;">
-        <div class="nav-logo-icon">💬</div>
-        Elenia
+      <a href="#" class="elenia-logo s-lg on-dark" aria-label="Elenia">
+        Elenia<span class="pulse" aria-hidden="true"></span>
       </a>
       <p>Tu recepcionista por WhatsApp para negocios colombianos. Elenia atiende a tus clientes, agenda citas y hace crecer tu negocio: noches, domingos y festivos.</p>
       <div class="footer-origin">🇨🇴 Hecho con orgullo desde Pereira, el corazón del eje cafetero</div>
