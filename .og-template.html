@@ -8,23 +8,25 @@
   html, body {
     width: 1200px; height: 630px;
     overflow: hidden;
-    background: #0A3320;
+    background: #0E4027;
   }
   body {
     font-family: 'Inter', -apple-system, system-ui, sans-serif;
     background:
-      radial-gradient(ellipse 70% 65% at 100% 0%, rgba(37,211,102,0.38) 0%, transparent 62%),
-      radial-gradient(ellipse 55% 55% at 0% 100%, rgba(37,211,102,0.22) 0%, transparent 62%),
-      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(37,211,102,0.18) 0%, transparent 60%),
-      linear-gradient(135deg, #165B36 0%, #0E4027 55%, #082D1B 100%);
+      radial-gradient(ellipse 70% 65% at 100% 0%, rgba(37,211,102,0.42) 0%, transparent 62%),
+      radial-gradient(ellipse 65% 60% at 0% 100%, rgba(37,211,102,0.30) 0%, transparent 62%),
+      radial-gradient(ellipse 55% 55% at 100% 100%, rgba(37,211,102,0.22) 0%, transparent 62%),
+      radial-gradient(ellipse 55% 55% at 0% 0%, rgba(37,211,102,0.18) 0%, transparent 62%),
+      #0E4027;
     color: #fff;
     position: relative;
   }
   .dots {
     position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0);
     background-size: 28px 28px;
     pointer-events: none;
+    z-index: 1;
   }
   .glow {
     position: absolute;
