@@ -1,4 +1,4 @@
-# Elenia — Design System Reference
+# Elenia | Design System Reference
 
 > Drop this file as context when building any Elenia product: dashboards, apps, emails, social media, print, etc.
 
@@ -8,12 +8,12 @@
 
 | Property | Value |
 |---|---|
-| Name | **Elenia** — A warm, human name. She is the recepcionista: the friendly presence that answers, attends, and never sleeps. |
+| Name | **Elenia**: a warm, human name. She is the recepcionista: the friendly presence that answers, attends, and never sleeps. |
 | Tagline | Tu recepcionista por WhatsApp |
 | Position | La recepcionista #1 de Colombia por WhatsApp |
 | Origin | Hecho con orgullo desde Pereira, el corazon del eje cafetero |
 | Market | Local service businesses across Colombia (beauty, wellness, barber, professional) |
-| Price | $99.000 COP/mes — fixed, all-inclusive, no hidden fees |
+| Price | $99.000 COP/mes: fixed, all-inclusive, no hidden fees |
 | Key rule | **Never say "AI", "IA", "inteligencia artificial", "bot", or "chatbot."** Always say "recepcionista", "recepcionista virtual", or "tu empleada". |
 
 ### Logo
@@ -26,7 +26,7 @@
 
 ## Colors
 
-### Primary — Green (WhatsApp-aligned)
+### Primary: Green (WhatsApp-aligned)
 
 | Token | Hex | Usage |
 |---|---|---|
@@ -40,7 +40,7 @@
 | `--green-800` | `#166534` | Badge text |
 | `--green-900` | `#14532D` | CTA section gradient start |
 
-### Neutral — Gray
+### Neutral: Gray
 
 | Token | Hex | Usage |
 |---|---|---|
@@ -56,7 +56,7 @@
 | `--gray-900` | `#111827` | Body text, headings |
 | `--gray-950` | `#030712` | Dark section backgrounds, hero headline |
 
-### Accent (icon/category backgrounds only — always the 50 shade)
+### Accent (icon/category backgrounds only; always the 50 shade)
 
 | Token | Hex |
 |---|---|
@@ -341,18 +341,18 @@ background: radial-gradient(circle at 30% 50%, rgba(37,211,102,0.12) 0%, transpa
 
 Sections alternate to create visual rhythm:
 
-1. Hero — green gradient + dot grid
-2. Stats bar — gray-950 (dark)
-3. Features — white
-4. Demo — gray-50 → white gradient
-5. How it works — white
-6. Business types — gray-950 (dark)
-7. Pricing — white
-8. Detail features — white
-9. Testimonials — gray-50
-10. FAQ — gray-50
-11. Final CTA — green-900 → gray-950 gradient + radial glow
-12. Footer — gray-950 (dark)
+1. Hero: green gradient + dot grid
+2. Stats bar: gray-950 (dark)
+3. Features: white
+4. Demo: gray-50 → white gradient
+5. How it works: white
+6. Business types: gray-950 (dark)
+7. Pricing: white
+8. Detail features: white
+9. Testimonials: gray-50
+10. FAQ: gray-50
+11. Final CTA: green-900 → gray-950 gradient + radial glow
+12. Footer: gray-950 (dark)
 
 ---
 
@@ -404,7 +404,7 @@ Sections alternate to create visual rhythm:
 | Time | 12-hour: "2:00 p.m.", "9:47 p.m." |
 | Address | Mix "usted" (respect) and "tu" (casual) naturally |
 | Legal | "Tratamiento de datos" (per Ley 1581) |
-| Flag | 🇨🇴 sparingly — footer and origin badge only |
+| Flag | 🇨🇴 sparingly: footer and origin badge only |
 | Cities | Medellin, Bogota, Cali, Barranquilla, Pereira, Bucaramanga, Envigado, Armenia, Manizales, Cartagena, Santa Marta |
 
 ---
@@ -413,7 +413,7 @@ Sections alternate to create visual rhythm:
 
 ```css
 :root {
-  /* Primary — Green */
+  /* Primary: Green */
   --green-50:  #ECFDF5;
   --green-100: #D1FAE5;
   --green-200: #A7F3D0;
@@ -424,7 +424,7 @@ Sections alternate to create visual rhythm:
   --green-800: #166534;
   --green-900: #14532D;
 
-  /* Neutral — Gray */
+  /* Neutral: Gray */
   --gray-50:  #F9FAFB;
   --gray-100: #F3F4F6;
   --gray-200: #E5E7EB;
