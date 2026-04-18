@@ -137,66 +137,41 @@ button { border: none; cursor: pointer; font-family: inherit; }
 }
 
 /* =============================================
-   ELENIA LOGO — Sora 600 wordmark + live green pulse
-   (source: Logo Final design handoff)
+   ELENIA LOGO — speech-bubble mark + Sora wordmark
+   (inlined SVG so page fonts cascade; the mark
+    scales via height, driven by variant class)
    ============================================= */
 .elenia-logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.22em;
-  font-family: 'Sora', -apple-system, sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  align-items: center;
   color: var(--gray-900);
   text-decoration: none;
+  line-height: 0;
 }
 
-.elenia-logo .pulse {
-  display: inline-block;
-  width: 0.1em;
-  height: 0.1em;
-  min-width: 3px;
-  min-height: 3px;
-  background: var(--green-500);
-  border-radius: 50%;
-  align-self: center;
-  flex-shrink: 0;
-  transform: translateY(0.02em);
-  position: relative;
+.elenia-mark {
+  display: block;
+  width: auto;
+  height: 36px; /* default, overridden by size variants */
 }
 
-.elenia-logo .pulse::before {
-  content: '';
-  position: absolute;
-  inset: -30%;
-  border-radius: 50%;
-  border: 1.5px solid rgba(37, 211, 102, 0.55);
-  animation: elenia-pulse 2.2s infinite;
-  pointer-events: none;
+.elenia-mark path { fill: currentColor; }
+
+.elenia-mark .wm {
+  font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  font-size: 34px;
+  letter-spacing: -1px;
+  fill: currentColor;
 }
 
-/* Ring only animates on larger sizes (hero / xl) */
-.elenia-logo.s-lg .pulse::before,
-.elenia-logo.s-md .pulse::before,
-.elenia-logo.s-sm .pulse::before { display: none; }
+/* Size variants — height of the bubble drives everything */
+.elenia-logo.s-xl .elenia-mark { height: 96px; }
+.elenia-logo.s-lg .elenia-mark { height: 56px; }
+.elenia-logo.s-md .elenia-mark { height: 36px; }
+.elenia-logo.s-sm .elenia-mark { height: 24px; }
 
-@keyframes elenia-pulse {
-  0%   { transform: scale(0.55); opacity: 1; }
-  100% { transform: scale(2.5);  opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .elenia-logo .pulse::before { animation: none; }
-}
-
-/* Size variants per spec */
-.elenia-logo.s-xl { font-size: 72px; }
-.elenia-logo.s-lg { font-size: 44px; }
-.elenia-logo.s-md { font-size: 24px; }
-.elenia-logo.s-sm { font-size: 16px; }
-
-.elenia-logo.on-dark { color: var(--white); }
+.elenia-logo.on-dark { color: var(--cream, #fafaf7); }
 
 /* Nav + footer-brand stack uses the logo directly */
 .nav-logo {
@@ -2177,7 +2152,11 @@ button { border: none; cursor: pointer; font-family: inherit; }
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
     <a href="#" class="elenia-logo s-md" aria-label="Elenia — inicio">
-      Elenia<span class="pulse" aria-hidden="true"></span>
+      <svg class="elenia-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" aria-hidden="true">
+        <path d="M8 10 h44 a6 6 0 0 1 6 6 v24 a6 6 0 0 1 -6 6 h-26 l-12 10 v-10 h-6 a6 6 0 0 1 -6 -6 v-24 a6 6 0 0 1 6 -6 z"></path>
+        <circle cx="33" cy="28" r="3" fill="#25D366"></circle>
+        <text x="72" y="42" class="wm">Elenia</text>
+      </svg>
     </a>
     <ul class="nav-links">
       <li><a href="#features">Funciones</a></li>
@@ -3141,7 +3120,11 @@ button { border: none; cursor: pointer; font-family: inherit; }
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="#" class="elenia-logo s-lg on-dark" aria-label="Elenia">
-        Elenia<span class="pulse" aria-hidden="true"></span>
+        <svg class="elenia-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" aria-hidden="true">
+          <path d="M8 10 h44 a6 6 0 0 1 6 6 v24 a6 6 0 0 1 -6 6 h-26 l-12 10 v-10 h-6 a6 6 0 0 1 -6 -6 v-24 a6 6 0 0 1 6 -6 z"></path>
+          <circle cx="33" cy="28" r="3" fill="#25D366"></circle>
+          <text x="72" y="42" class="wm">Elenia</text>
+        </svg>
       </a>
       <p>Tu recepcionista por WhatsApp para negocios colombianos. Elenia atiende a tus clientes, agenda citas y hace crecer tu negocio: noches, domingos y festivos.</p>
       <div class="footer-origin">🇨🇴 Hecho con orgullo desde Pereira, el corazón del eje cafetero</div>
