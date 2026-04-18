@@ -79,6 +79,10 @@
   --wa-text: #303030;
   --wa-time: #8C8C8C;
   --wa-blue-check: #53BDEB;
+  --wa-in: #FFFFFF;
+  --wa-out: #DCF8C6;
+  --wa-tick: #34B7F1;
+  --wa-meta: #667781;
 }
 
 html { scroll-behavior: smooth; }
@@ -753,10 +757,44 @@ button { border: none; cursor: pointer; font-family: inherit; }
   letter-spacing: -0.02em;
   color: rgba(255,255,255,0.55);
   white-space: nowrap;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.75;
+}
+.logo-item:hover { color: rgba(255,255,255,0.95); opacity: 1; }
+
+/* Image slot: drop brand files into /logos/ and they'll render here.
+   To force every mark to monochrome white (visual unity across mixed
+   logo styles), uncomment the filter below. */
+.logo-item img {
+  display: block;
+  height: 34px;
+  width: auto;
+  max-width: 170px;
+  object-fit: contain;
+  /* filter: brightness(0) invert(1); */
+}
+/* Colored logos sit on the green hero gradient — give each one a subtle
+   white pill so they stay legible and the row reads as unified. */
+.logo-item {
+  background: rgba(255,255,255,0.94);
+  border-radius: 10px;
+  padding: 0 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  height: 52px;
+  opacity: 1;
+}
+/* Missing slots fall back to plain text with no pill. */
+.logo-item.is-missing {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  height: 40px;
 }
 
-.logo-item:hover { color: rgba(255,255,255,0.95); }
+/* Fallback text shown only when the logo image fails to load (file missing). */
+.logo-item .logo-fallback { display: none; }
+.logo-item.is-missing img { display: none; }
+.logo-item.is-missing .logo-fallback { display: inline; }
 
 @keyframes logos-scroll {
   from { transform: translateX(0); }
@@ -992,224 +1030,368 @@ button { border: none; cursor: pointer; font-family: inherit; }
 
 .phones-scroll {
   display: flex;
-  gap: 24px;
+  gap: 36px;
+  flex-shrink: 0;
+  align-items: flex-start;
+}
+
+/* =====================================================
+   Phone mockup (WhatsApp iOS) — prototype-based
+   ===================================================== */
+.phone-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
   flex-shrink: 0;
 }
 
-/* iPhone Frame */
-.iphone-frame {
-  width: 290px;
-  background: #000;
-  border-radius: 44px;
-  padding: 12px;
-  box-shadow: var(--shadow-2xl);
+.phone {
   position: relative;
+  width: 300px;
+  height: 620px;
+  background: #0B0F14;
+  border-radius: 44px;
+  padding: 10px;
+  box-shadow:
+    0 25px 50px -12px rgba(0,0,0,0.35),
+    0 0 0 2px #1a1f26 inset;
   flex-shrink: 0;
 }
-
-.iphone-screen {
-  border-radius: 34px;
-  overflow: hidden;
-  background: var(--wa-bg);
-}
-
-.dynamic-island {
+.phone::before {
+  content: '';
   position: absolute;
-  top: 16px;
-  left: 50%;
+  top: 18px; left: 50%;
   transform: translateX(-50%);
-  width: 90px;
-  height: 26px;
+  width: 100px; height: 24px;
   background: #000;
-  border-radius: 20px;
+  border-radius: 14px;
   z-index: 10;
 }
-
-.status-bar {
+.phone-screen {
+  position: relative;
+  width: 100%; height: 100%;
+  background: #E4DDD4;
+  border-radius: 34px;
+  overflow: hidden;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 22px 6px;
-  background: var(--wa-header);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
+  flex-direction: column;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(0,0,0,0.025) 2px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(0,0,0,0.025) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 60px 60px, 80px 80px, 40px 40px;
 }
 
-.status-bar-right {
+/* Status bar */
+.p-statusbar {
+  height: 32px;
+  padding: 0 22px 0 28px;
+  background: var(--wa-header);
+  color: white;
+  font-size: 11.5px;
+  font-weight: 600;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  letter-spacing: 0.2px;
+}
+.p-statusbar-icons { display: flex; align-items: center; gap: 5px; }
+.p-statusbar-icons svg { width: 14px; height: 14px; }
+
+/* WhatsApp header */
+.p-wa-header {
+  height: 52px;
+  background: var(--wa-header);
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.p-wa-back {
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+}
+.p-wa-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F472B6, #EC4899);
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.p-wa-title { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.p-wa-title .name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.p-wa-title .status {
+  font-size: 11px;
+  opacity: 0.85;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+}
+.p-wa-title .status .typing-dots {
+  display: inline-flex; gap: 2px; vertical-align: middle; margin-left: 4px;
+}
+.p-wa-title .status .typing-dots i {
+  width: 3px; height: 3px; background: white; border-radius: 50%;
+  animation: miniBlink 1.2s infinite ease-in-out;
+}
+.p-wa-title .status .typing-dots i:nth-child(2) { animation-delay: 0.2s; }
+.p-wa-title .status .typing-dots i:nth-child(3) { animation-delay: 0.4s; }
+@keyframes miniBlink { 0%,60%,100% { opacity: 0.3; } 30% { opacity: 1; } }
+.p-wa-icons { display: flex; align-items: center; gap: 16px; color: white; }
+.p-wa-icons svg { width: 17px; height: 17px; }
+
+/* Messages area */
+.p-wa-messages {
+  flex: 1;
+  overflow: hidden;
+  padding: 10px 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.p-day-chip {
+  align-self: center;
+  background: #E1F3FB;
+  color: #54656F;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin: 4px 0 4px;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.08);
+}
+
+.bubble-row {
+  display: flex;
+  padding: 0 4px;
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.bubble-row.in { justify-content: flex-start; }
+.bubble-row.out { justify-content: flex-end; }
+.bubble-row.show { opacity: 1; transform: translateY(0) scale(1); }
+
+.p-bubble {
+  position: relative;
+  max-width: 80%;
+  padding: 6px 9px 4px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #111B21;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  word-wrap: break-word;
+  letter-spacing: -0.005em;
+}
+.p-bubble.in { background: var(--wa-in); border-top-left-radius: 2px; }
+.p-bubble.out { background: var(--wa-out); border-top-right-radius: 2px; }
+.p-bubble.in::before,
+.p-bubble.out::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 8px; height: 13px;
+}
+.p-bubble.in::before {
+  left: -7px;
+  background: var(--wa-in);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+.p-bubble.out::before {
+  right: -7px;
+  background: var(--wa-out);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.p-bubble .meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  float: right;
+  margin: 6px -2px -2px 8px;
+  font-size: 10px;
+  color: var(--wa-meta);
+  line-height: 1;
+}
+.p-bubble .meta .ticks {
+  display: inline-flex;
+  color: var(--wa-tick);
+}
+.p-bubble .meta .ticks svg { width: 15px; height: 11px; display: block; }
+.p-bubble .text::after {
+  content: '';
+  display: inline-block;
+  width: 54px;
+}
+
+/* Options card inside a bubble */
+.opt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+  border-left: 3px solid var(--green-500);
+  background: rgba(37,211,102,0.06);
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+.opt-card .opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--gray-800);
+}
+.opt-card .opt .h { font-weight: 600; color: var(--green-700); }
+
+/* Typing bubble */
+.typing {
+  display: inline-flex;
   align-items: center;
   gap: 4px;
+  padding: 9px 11px;
+}
+.typing i {
+  width: 6px; height: 6px;
+  background: #9AA6AB;
+  border-radius: 50%;
+  animation: typingDot 1.2s infinite ease-in-out;
+}
+.typing i:nth-child(2) { animation-delay: 0.15s; }
+.typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-3px); opacity: 1; }
 }
 
-.signal-dots { display: flex; gap: 2px; align-items: flex-end; }
-.signal-dots i { display: block; width: 3px; background: #fff; border-radius: 1px; }
-.signal-dots i:nth-child(1) { height: 4px; }
-.signal-dots i:nth-child(2) { height: 6px; }
-.signal-dots i:nth-child(3) { height: 8px; }
-.signal-dots i:nth-child(4) { height: 10px; }
-
-.battery-icon {
-  width: 20px; height: 9px;
-  border: 1.5px solid #fff;
-  border-radius: 2px;
-  position: relative;
-  display: inline-block;
+/* Composer */
+.p-wa-composer {
+  background: transparent;
+  padding: 6px 8px 10px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
 }
-.battery-icon::after {
-  content: '';
-  position: absolute; right: -3px; top: 2px;
-  width: 2px; height: 4px;
-  background: #fff; border-radius: 0 1px 1px 0;
-}
-.battery-icon::before {
-  content: '';
-  position: absolute; left: 2px; top: 2px; bottom: 2px;
-  width: 55%; background: #fff; border-radius: 1px;
-}
-
-.wa-header-bar {
+.p-wa-composer .p-input {
+  flex: 1;
+  background: white;
+  border-radius: 24px;
+  padding: 9px 14px;
+  font-size: 12.5px;
+  color: var(--gray-400);
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 10px 8px;
-  background: var(--wa-header);
-  color: #fff;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.1);
 }
-
-.wa-back { font-size: 16px; opacity: 0.9; }
-
-.wa-avatar {
-  width: 30px; height: 30px;
+.p-wa-composer .p-input svg { color: #8696A0; flex-shrink: 0; }
+.p-wa-composer .p-send {
+  width: 36px; height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
+  background: var(--wa-header);
+  display: flex; align-items: center; justify-content: center;
+  color: white;
   flex-shrink: 0;
 }
 
-.wa-contact-info { flex: 1; min-width: 0; }
-.wa-contact-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.wa-contact-status { font-size: 10px; opacity: 0.7; }
-.wa-header-icons { display: flex; gap: 12px; font-size: 14px; opacity: 0.9; }
-
-.wa-chat {
-  padding: 8px 8px 10px;
+/* Floating confirmation toast */
+.confirm-toast {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  background: white;
+  border: 1px solid var(--green-200);
+  border-radius: 16px;
+  padding: 18px 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px -8px rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 5;
+  min-width: 210px;
+  pointer-events: none;
+}
+.confirm-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.confirm-toast .check-circle {
+  width: 40px; height: 40px;
+  margin: 0 auto 8px;
+  background: var(--green-50);
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  min-height: 360px;
-  background:
-    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c1.5 0 2.5 1 2.5 2s-1 2-2.5 2-2.5-1-2.5-2 1-2 2.5-2zm15 15c1 0 2 .5 2 1.5s-1 1.5-2 1.5-2-.5-2-1.5 1-1.5 2-1.5zM15 35c1 0 1.5.5 1.5 1.5S16 38 15 38s-1.5-.5-1.5-1.5S14 35 15 35z' fill='%23d4cfc6' fill-opacity='.12'/%3E%3C/svg%3E"),
-    var(--wa-bg);
-}
-
-.wa-date-chip {
-  align-self: center;
-  background: rgba(225,218,208,0.85);
-  color: #54656F;
-  font-size: 10px;
-  font-weight: 500;
-  padding: 3px 10px;
-  border-radius: 6px;
-  margin: 3px 0 5px;
-}
-
-.msg {
-  max-width: 84%;
-  padding: 5px 8px 2px;
-  border-radius: 8px;
-  font-size: 12px;
-  line-height: 1.4;
-  color: var(--wa-text);
-  position: relative;
-  word-wrap: break-word;
-}
-
-.msg.in {
-  background: #fff;
-  align-self: flex-start;
-  border-top-left-radius: 2px;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-}
-
-.msg.out {
-  background: var(--wa-green-light);
-  align-self: flex-end;
-  border-top-right-radius: 2px;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-}
-
-.msg-time {
-  display: flex;
-  justify-content: flex-end;
   align-items: center;
-  gap: 2px;
-  margin-top: 1px;
-  font-size: 9.5px;
-  color: var(--wa-time);
+  justify-content: center;
+  color: var(--green-600);
 }
+.confirm-toast .t1 { font-weight: 700; font-size: 13.5px; color: var(--gray-900); margin-bottom: 2px; }
+.confirm-toast .t2 { font-size: 11.5px; color: var(--gray-500); }
 
-.msg-check {
-  color: var(--wa-blue-check);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: -3px;
-}
-
-.msg-gap { height: 4px; }
-
-.wa-input-bar {
-  display: flex;
+/* Replay pill */
+.replay-pill {
+  position: absolute;
+  bottom: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: var(--gray-700);
+  border: 1px solid var(--gray-200);
+  border-radius: 9999px;
+  padding: 7px 13px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 6px;
-  background: var(--wa-bg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  z-index: 8;
 }
+.replay-pill.show { opacity: 1; }
+.replay-pill:hover { border-color: var(--green-200); color: var(--green-700); }
 
-.wa-input-field {
-  flex: 1;
-  background: #fff;
-  border-radius: 18px;
-  padding: 7px 12px;
-  font-size: 12px;
-  color: #999;
-  display: flex;
+/* Caption under each phone */
+.phone-caption {
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  padding: 7px 14px;
+  background: rgba(37,211,102,0.08);
+  border: 1px solid rgba(37,211,102,0.25);
+  color: var(--green-800);
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
 }
-
-.wa-input-field .emoji { font-size: 16px; opacity: 0.5; }
-
-.wa-mic-btn {
-  width: 32px; height: 32px;
+.phone-caption::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: var(--green-500);
   border-radius: 50%;
-  background: #25D366;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-
-.home-indicator {
-  height: 16px;
-  background: var(--wa-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-indicator-bar {
-  width: 100px;
-  height: 4px;
-  background: rgba(0,0,0,0.12);
-  border-radius: 4px;
+  box-shadow: 0 0 0 3px rgba(37,211,102,0.15);
 }
 
 /* =============================================
@@ -1952,9 +2134,8 @@ button { border: none; cursor: pointer; font-family: inherit; }
   .steps-grid { grid-template-columns: 1fr; gap: 32px; max-width: 400px; }
   .steps-grid::before { display: none; }
 
-  .phones-scroll { flex-direction: column; align-items: stretch; width: 100%; }
-  .phones-scroll .iphone-frame:nth-child(n+2) { display: none; }
-  .phones-scroll .iphone-frame:first-child { width: 100%; max-width: none; }
+  .phones-scroll { flex-direction: column; align-items: center; width: 100%; gap: 28px; }
+  .phone-wrap:nth-child(n+2) { display: none; }
 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 
@@ -2069,32 +2250,88 @@ button { border: none; cursor: pointer; font-family: inherit; }
   </div>
 
   <!-- Logos bar lives inside the hero so it shares the gradient -->
-  <div class="logos-bar" aria-label="Empresas que confían en la tecnología detrás de Elenia">
+  <!--
+    ============================================================
+    CUSTOMER LOGOS — drop SVG files into /logos/ to populate.
+    Each slot uses an <img> with a text fallback shown if the
+    file is missing. To add a customer:
+      1. Save their logo as a monochrome SVG (white or black).
+      2. Place it at /logos/<slug>.svg (e.g. /logos/glamour-nails.svg).
+      3. Update the src, alt, and fallback text below.
+    The filter in CSS (.logo-item img) forces every mark to
+    white so the carousel reads as one unified row.
+    ============================================================
+  -->
+  <div class="logos-bar" aria-label="Clientas de Elenia">
     <div class="logos-bar-title">La misma tecnología que usan 500+ empresas</div>
     <div class="logos-track-wrapper">
-      <div class="logos-track">
-        <!-- Set A -->
-        <span class="logo-item">Bancolombia</span>
-        <span class="logo-item">Rappi</span>
-        <span class="logo-item">Nequi</span>
-        <span class="logo-item">Éxito</span>
-        <span class="logo-item">Davivienda</span>
-        <span class="logo-item">Avianca</span>
-        <span class="logo-item">Falabella</span>
-        <span class="logo-item">Homecenter</span>
-        <span class="logo-item">Mercado Libre</span>
-        <span class="logo-item">Tuya</span>
-        <!-- Set B (duplicate for seamless loop) -->
-        <span class="logo-item" aria-hidden="true">Bancolombia</span>
-        <span class="logo-item" aria-hidden="true">Rappi</span>
-        <span class="logo-item" aria-hidden="true">Nequi</span>
-        <span class="logo-item" aria-hidden="true">Éxito</span>
-        <span class="logo-item" aria-hidden="true">Davivienda</span>
-        <span class="logo-item" aria-hidden="true">Avianca</span>
-        <span class="logo-item" aria-hidden="true">Falabella</span>
-        <span class="logo-item" aria-hidden="true">Homecenter</span>
-        <span class="logo-item" aria-hidden="true">Mercado Libre</span>
-        <span class="logo-item" aria-hidden="true">Tuya</span>
+      <div class="logos-track" id="logos-track">
+        <!-- Set A — real paying customers (rename filenames as you receive consent) -->
+        <span class="logo-item">
+          <img src="/logos/bancolombia.png" alt="Bancolombia" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Bancolombia</span>
+        </span>
+        <span class="logo-item">
+          <img src="/logos/nequi.png" alt="Nequi" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Nequi</span>
+        </span>
+        <span class="logo-item">
+          <img src="/logos/homecenter.png" alt="Sodimac Homecenter" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Sodimac Homecenter</span>
+        </span>
+        <span class="logo-item">
+          <img src="/logos/cliente-4.svg" alt="Cliente 4" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 4</span>
+        </span>
+        <span class="logo-item">
+          <img src="/logos/cliente-5.svg" alt="Cliente 5" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 5</span>
+        </span>
+        <span class="logo-item">
+          <img src="/logos/cliente-6.svg" alt="Cliente 6" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 6</span>
+        </span>
+        <span class="logo-item">
+          <img src="/logos/cliente-7.svg" alt="Cliente 7" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 7</span>
+        </span>
+        <span class="logo-item">
+          <img src="/logos/cliente-8.svg" alt="Cliente 8" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 8</span>
+        </span>
+        <!-- Set B — duplicate for seamless loop (aria-hidden, auto-mirrors Set A via JS if desired) -->
+        <span class="logo-item" aria-hidden="true">
+          <img src="/logos/bancolombia.png" alt="" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Bancolombia</span>
+        </span>
+        <span class="logo-item" aria-hidden="true">
+          <img src="/logos/nequi.png" alt="" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Nequi</span>
+        </span>
+        <span class="logo-item" aria-hidden="true">
+          <img src="/logos/homecenter.png" alt="" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Sodimac Homecenter</span>
+        </span>
+        <span class="logo-item" aria-hidden="true">
+          <img src="/logos/cliente-4.svg" alt="" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 4</span>
+        </span>
+        <span class="logo-item" aria-hidden="true">
+          <img src="/logos/cliente-5.svg" alt="" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 5</span>
+        </span>
+        <span class="logo-item" aria-hidden="true">
+          <img src="/logos/cliente-6.svg" alt="" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 6</span>
+        </span>
+        <span class="logo-item" aria-hidden="true">
+          <img src="/logos/cliente-7.svg" alt="" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 7</span>
+        </span>
+        <span class="logo-item" aria-hidden="true">
+          <img src="/logos/cliente-8.svg" alt="" onerror="this.parentElement.classList.add('is-missing')">
+          <span class="logo-fallback">Cliente 8</span>
+        </span>
       </div>
     </div>
   </div>
@@ -2203,126 +2440,110 @@ button { border: none; cursor: pointer; font-family: inherit; }
     </div>
 
     <div class="phones-scroll">
-      <!-- PHONE 1: Valentina -->
-      <div class="iphone-frame">
-        <div class="dynamic-island"></div>
-        <div class="iphone-screen">
-          <div class="status-bar">
-            <span>9:47 PM</span>
-            <div class="status-bar-right">
-              <div class="signal-dots"><i></i><i></i><i></i><i></i></div>
-              <span style="font-size:10px">5G</span>
-              <div class="battery-icon"></div>
+      <!-- PHONE 1: Clienta uno (Valentina) -->
+      <div class="phone-wrap" data-phone="1">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="p-statusbar">
+              <span>9:47</span>
+              <div class="p-statusbar-icons">
+                <svg viewBox="0 0 16 10" fill="currentColor"><rect x="0" y="6" width="2.5" height="4" rx="0.5"/><rect x="3.8" y="4" width="2.5" height="6" rx="0.5"/><rect x="7.6" y="2" width="2.5" height="8" rx="0.5"/><rect x="11.4" y="0" width="2.5" height="10" rx="0.5"/></svg>
+                <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="0.5" width="20" height="11" rx="2.5"/><rect x="2" y="2" width="17" height="8" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="5" rx="0.5" fill="currentColor"/></svg>
+              </div>
+            </div>
+            <div class="p-wa-header">
+              <div class="p-wa-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+              </div>
+              <div class="p-wa-avatar">GN</div>
+              <div class="p-wa-title">
+                <div class="name">Glamour Nails Studio</div>
+                <div class="status" data-status>en línea</div>
+              </div>
+              <div class="p-wa-icons">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+              </div>
+            </div>
+            <div class="p-wa-messages" data-messages>
+              <div class="p-day-chip">HOY</div>
+            </div>
+            <div class="confirm-toast" data-toast>
+              <div class="check-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="t1">Cita agendada</div>
+              <div class="t2">Viernes 3:00 p.m. · Valentina</div>
+            </div>
+            <button class="replay-pill" data-replay>
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              Ver de nuevo
+            </button>
+            <div class="p-wa-composer">
+              <div class="p-input">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                <span>Mensaje</span>
+              </div>
+              <div class="p-send">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M4 4l16 8-16 8 4-8-4-8z"/></svg>
+              </div>
             </div>
           </div>
-          <div class="wa-header-bar">
-            <span class="wa-back">‹</span>
-            <div class="wa-avatar">G</div>
-            <div class="wa-contact-info">
-              <div class="wa-contact-name">Glamour Nails Studio</div>
-              <div class="wa-contact-status">en línea</div>
-            </div>
-            <div class="wa-header-icons"><span>📹</span><span>📞</span></div>
-          </div>
-          <div class="wa-chat">
-            <div class="wa-date-chip">HOY</div>
-            <div class="msg out">
-              Holaa, quiero una cita para uñas semipermanentes 💅
-              <div class="msg-time">9:47 p.m. <span class="msg-check">✓✓</span></div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg in">
-              ¡Hola Valentina! 😊 Las semipermanentes cuestan <strong>$45.000</strong> y duran 1 hora.<br><br>¿Qué día te queda bien?
-              <div class="msg-time">9:47 p.m.</div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg out">
-              El viernes, por la tardecita
-              <div class="msg-time">9:48 p.m. <span class="msg-check">✓✓</span></div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg in">
-              ¡Claro! El viernes 18 tengo:<br><br>🕐 2:00 p.m.<br>🕐 3:00 p.m.<br>🕐 5:00 p.m.<br><br>¿Cuál prefiere?
-              <div class="msg-time">9:48 p.m.</div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg out">
-              A las 3 porfa
-              <div class="msg-time">9:48 p.m. <span class="msg-check">✓✓</span></div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg in">
-              Listo, confirmada ✅<br><br>📋 <strong>Semipermanentes</strong><br>📅 Viernes 18 de abril<br>🕐 3:00 p.m.<br>💰 $45.000<br><br>¡Te esperamos, Vale! 💅✨
-              <div class="msg-time">9:48 p.m.</div>
-            </div>
-          </div>
-          <div class="wa-input-bar">
-            <div class="wa-input-field"><span class="emoji">😊</span> Mensaje</div>
-            <div class="wa-mic-btn">🎤</div>
-          </div>
-          <div class="home-indicator"><div class="home-indicator-bar"></div></div>
         </div>
+        <div class="phone-caption">Clienta uno · Valentina</div>
       </div>
 
-      <!-- PHONE 2: Camila -->
-      <div class="iphone-frame">
-        <div class="dynamic-island"></div>
-        <div class="iphone-screen">
-          <div class="status-bar">
-            <span>9:52 PM</span>
-            <div class="status-bar-right">
-              <div class="signal-dots"><i></i><i></i><i></i><i></i></div>
-              <span style="font-size:10px">5G</span>
-              <div class="battery-icon"></div>
+      <!-- PHONE 2: Clienta dos (Camila) -->
+      <div class="phone-wrap" data-phone="2">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="p-statusbar">
+              <span>9:52</span>
+              <div class="p-statusbar-icons">
+                <svg viewBox="0 0 16 10" fill="currentColor"><rect x="0" y="6" width="2.5" height="4" rx="0.5"/><rect x="3.8" y="4" width="2.5" height="6" rx="0.5"/><rect x="7.6" y="2" width="2.5" height="8" rx="0.5"/><rect x="11.4" y="0" width="2.5" height="10" rx="0.5"/></svg>
+                <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.5" y="0.5" width="20" height="11" rx="2.5"/><rect x="2" y="2" width="17" height="8" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="5" rx="0.5" fill="currentColor"/></svg>
+              </div>
+            </div>
+            <div class="p-wa-header">
+              <div class="p-wa-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+              </div>
+              <div class="p-wa-avatar" style="background:linear-gradient(135deg,#60A5FA,#6366F1);">GN</div>
+              <div class="p-wa-title">
+                <div class="name">Glamour Nails Studio</div>
+                <div class="status" data-status>en línea</div>
+              </div>
+              <div class="p-wa-icons">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+              </div>
+            </div>
+            <div class="p-wa-messages" data-messages>
+              <div class="p-day-chip">HOY</div>
+            </div>
+            <div class="confirm-toast" data-toast>
+              <div class="check-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="t1">Cita agendada</div>
+              <div class="t2">Viernes 4:00 p.m. · Camila</div>
+            </div>
+            <button class="replay-pill" data-replay>
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              Ver de nuevo
+            </button>
+            <div class="p-wa-composer">
+              <div class="p-input">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                <span>Mensaje</span>
+              </div>
+              <div class="p-send">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M4 4l16 8-16 8 4-8-4-8z"/></svg>
+              </div>
             </div>
           </div>
-          <div class="wa-header-bar">
-            <span class="wa-back">‹</span>
-            <div class="wa-avatar">G</div>
-            <div class="wa-contact-info">
-              <div class="wa-contact-name">Glamour Nails Studio</div>
-              <div class="wa-contact-status">en línea</div>
-            </div>
-            <div class="wa-header-icons"><span>📹</span><span>📞</span></div>
-          </div>
-          <div class="wa-chat">
-            <div class="wa-date-chip">HOY</div>
-            <div class="msg out">
-              Hola! Quiero semipermanentes el viernes a las 3
-              <div class="msg-time">9:52 p.m. <span class="msg-check">✓✓</span></div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg in">
-              ¡Hola Camila! Las semipermanentes cuestan <strong>$45.000</strong>.<br><br>El viernes a las 3:00 ya está ocupado 😔 Pero tengo:<br><br>🕐 2:00 p.m.<br>🕐 4:00 p.m.<br>🕐 5:00 p.m.<br><br>¿Te sirve alguno?
-              <div class="msg-time">9:52 p.m.</div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg out">
-              A las 4 me sirve!
-              <div class="msg-time">9:53 p.m. <span class="msg-check">✓✓</span></div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg in">
-              Perfecto, agendada ✅<br><br>📋 <strong>Semipermanentes</strong><br>📅 Viernes 18 de abril<br>🕐 4:00 p.m.<br>💰 $45.000<br><br>¡Nos vemos, Cami! 💅
-              <div class="msg-time">9:53 p.m.</div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg out">
-              Gracias! Cuánto cuestan las acrílicas?
-              <div class="msg-time">9:53 p.m. <span class="msg-check">✓✓</span></div>
-            </div>
-            <div class="msg-gap"></div>
-            <div class="msg in">
-              ¡Las acrílicas cuestan <strong>$65.000</strong> (1h 30min). Si quiere cambiar su cita, me avisa! 😊
-              <div class="msg-time">9:53 p.m.</div>
-            </div>
-          </div>
-          <div class="wa-input-bar">
-            <div class="wa-input-field"><span class="emoji">😊</span> Mensaje</div>
-            <div class="wa-mic-btn">🎤</div>
-          </div>
-          <div class="home-indicator"><div class="home-indicator-bar"></div></div>
         </div>
+        <div class="phone-caption">Clienta dos · Camila</div>
       </div>
     </div>
   </div>
@@ -3045,6 +3266,195 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     targetX = restX;
     targetY = restY;
     schedule();
+  });
+})();
+</script>
+
+<script>
+/* =====================================================
+   Phone demo chat animation (Clienta uno + Clienta dos)
+   ===================================================== */
+(function () {
+  const TICKS = `<span class="ticks"><svg viewBox="0 0 18 13" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.071 3.998L9.953 2.88a.336.336 0 00-.476.002L4.13 8.228 2.47 6.568a.336.336 0 00-.476 0l-1.12 1.12a.336.336 0 000 .476l2.856 2.857a.336.336 0 00.476 0l6.865-6.867a.336.336 0 000-.476z"/>
+    <path d="M17.144 3.998L16.026 2.88a.336.336 0 00-.476.002L10.203 8.228 8.543 6.568a.336.336 0 00-.476 0l-.616.617 1.976 1.976a.336.336 0 00.476 0l7.241-7.243a.336.336 0 000-.476z" transform="translate(0 1)"/>
+  </svg></span>`;
+
+  // Conversations — the phone shows each client's WhatsApp.
+  // `out` = message the client sends. `in` = reply from Glamour Nails (Elenia).
+  const SCRIPTS = {
+    '1': [
+      { who: 'out', text: 'Holaa, quiero una cita para uñas semipermanentes 💅', time: '9:47 p.m.', delay: 350 },
+      { who: 'typing-in', delay: 450, typingMs: 1100 },
+      { who: 'in',  text: '¡Hola Valentina! 😊 Las semipermanentes cuestan $45.000 y duran 1 hora.', time: '9:47 p.m.', delay: 200 },
+      { who: 'in',  text: '¿Qué día te queda bien?', time: '9:47 p.m.', delay: 350 },
+      { who: 'typing-out', delay: 700, typingMs: 1100 },
+      { who: 'out', text: 'El viernes, por la tardecita', time: '9:48 p.m.', delay: 200 },
+      { who: 'typing-in', delay: 500, typingMs: 1200 },
+      { who: 'in',  text: '¡Claro! El viernes 18 tengo:', time: '9:48 p.m.', delay: 200,
+        options: [
+          { h: '2:00', label: 'p.m.' },
+          { h: '3:00', label: 'p.m.' },
+          { h: '5:00', label: 'p.m.' },
+        ]
+      },
+      { who: 'in',  text: '¿Cuál prefiere?', time: '9:48 p.m.', delay: 300 },
+      { who: 'typing-out', delay: 600, typingMs: 900 },
+      { who: 'out', text: 'A las 3 porfa', time: '9:48 p.m.', delay: 200 },
+      { who: 'typing-in', delay: 500, typingMs: 1000 },
+      { who: 'in',  text: 'Listo, confirmada ✅ ¡Te esperamos, Vale! 💅✨', time: '9:48 p.m.', delay: 200 },
+      { who: 'toast', delay: 400 },
+    ],
+    '2': [
+      { who: 'out', text: 'Hola! Quiero semipermanentes el viernes a las 3', time: '9:52 p.m.', delay: 350 },
+      { who: 'typing-in', delay: 450, typingMs: 1200 },
+      { who: 'in',  text: '¡Hola Camila! Las semipermanentes cuestan $45.000. El viernes a las 3:00 ya está ocupado 😔 Pero tengo:', time: '9:52 p.m.', delay: 200,
+        options: [
+          { h: '2:00', label: 'p.m.' },
+          { h: '4:00', label: 'p.m.' },
+          { h: '5:00', label: 'p.m.' },
+        ]
+      },
+      { who: 'in',  text: '¿Te sirve alguno?', time: '9:52 p.m.', delay: 300 },
+      { who: 'typing-out', delay: 600, typingMs: 900 },
+      { who: 'out', text: 'A las 4 me sirve!', time: '9:53 p.m.', delay: 200 },
+      { who: 'typing-in', delay: 450, typingMs: 1100 },
+      { who: 'in',  text: 'Perfecto, agendada ✅ ¡Nos vemos, Cami! 💅', time: '9:53 p.m.', delay: 200 },
+      { who: 'toast', delay: 400 },
+      { who: 'typing-out', delay: 900, typingMs: 900 },
+      { who: 'out', text: 'Gracias! Cuánto cuestan las acrílicas?', time: '9:53 p.m.', delay: 200 },
+      { who: 'typing-in', delay: 500, typingMs: 1100 },
+      { who: 'in',  text: 'Las acrílicas cuestan $65.000 (1h 30min). Si quiere cambiar su cita, me avisa! 😊', time: '9:53 p.m.', delay: 200 },
+    ],
+  };
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function setStatus(statusEl, s) {
+    if (s === 'typing') {
+      statusEl.innerHTML = 'escribiendo<span class="typing-dots"><i></i><i></i><i></i></span>';
+    } else {
+      statusEl.textContent = 'en línea';
+    }
+  }
+
+  function makeBubble({ who, text, time, options }) {
+    const row = document.createElement('div');
+    row.className = 'bubble-row ' + who;
+    const bubble = document.createElement('div');
+    bubble.className = 'p-bubble ' + who;
+    const textSpan = document.createElement('span');
+    textSpan.className = 'text';
+    textSpan.textContent = text;
+    bubble.appendChild(textSpan);
+    if (options) {
+      const card = document.createElement('div');
+      card.className = 'opt-card';
+      options.forEach(o => {
+        const r = document.createElement('div');
+        r.className = 'opt';
+        r.innerHTML = `<span class="h">${o.h}</span><span>${o.label}</span>`;
+        card.appendChild(r);
+      });
+      bubble.appendChild(card);
+    }
+    const meta = document.createElement('span');
+    meta.className = 'meta';
+    meta.innerHTML = `${time || ''}${who === 'out' ? TICKS : ''}`;
+    bubble.appendChild(meta);
+    row.appendChild(bubble);
+    return row;
+  }
+
+  function makeTyping(who) {
+    const row = document.createElement('div');
+    row.className = 'bubble-row ' + (who === 'typing-in' ? 'in' : 'out');
+    const bubble = document.createElement('div');
+    bubble.className = 'p-bubble ' + (who === 'typing-in' ? 'in' : 'out');
+    bubble.innerHTML = `<span class="typing"><i></i><i></i><i></i></span>`;
+    row.appendChild(bubble);
+    return row;
+  }
+
+  function appendAndShow(msgBox, node) {
+    msgBox.appendChild(node);
+    const rows = msgBox.querySelectorAll('.bubble-row');
+    if (rows.length > 7) rows[0].remove();
+    requestAnimationFrame(() => node.classList.add('show'));
+  }
+
+  async function playPhone(wrap, token) {
+    const id = wrap.dataset.phone;
+    const script = SCRIPTS[id];
+    if (!script) return;
+    const msgBox = wrap.querySelector('[data-messages]');
+    const toast = wrap.querySelector('[data-toast]');
+    const replayBtn = wrap.querySelector('[data-replay]');
+    const statusEl = wrap.querySelector('[data-status]');
+
+    msgBox.innerHTML = '<div class="p-day-chip">HOY</div>';
+    toast.classList.remove('show');
+    replayBtn.classList.remove('show');
+    setStatus(statusEl, 'online');
+
+    for (const step of script) {
+      if (token.cancelled) return;
+      await sleep(step.delay || 250);
+      if (token.cancelled) return;
+
+      if (step.who === 'typing-in' || step.who === 'typing-out') {
+        if (step.who === 'typing-in') setStatus(statusEl, 'typing');
+        const t = makeTyping(step.who);
+        appendAndShow(msgBox, t);
+        await sleep(step.typingMs || 1000);
+        if (token.cancelled) return;
+        t.remove();
+        if (step.who === 'typing-in') setStatus(statusEl, 'online');
+        continue;
+      }
+
+      if (step.who === 'toast') {
+        toast.classList.add('show');
+        await sleep(1500);
+        if (token.cancelled) return;
+        toast.classList.remove('show');
+        continue;
+      }
+
+      appendAndShow(msgBox, makeBubble(step));
+    }
+
+    await sleep(600);
+    if (!token.cancelled) replayBtn.classList.add('show');
+  }
+
+  const wraps = document.querySelectorAll('.phone-wrap[data-phone]');
+  const tokens = new WeakMap();
+
+  function start(wrap) {
+    // Cancel any running playback for this phone, then start fresh
+    const prev = tokens.get(wrap);
+    if (prev) prev.cancelled = true;
+    const token = { cancelled: false };
+    tokens.set(wrap, token);
+    playPhone(wrap, token);
+  }
+
+  wraps.forEach(wrap => {
+    const replay = wrap.querySelector('[data-replay]');
+    if (replay) replay.addEventListener('click', () => start(wrap));
+
+    // Stagger start between phones so they don't play in perfect sync
+    const delayIdx = Number(wrap.dataset.phone) - 1;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          io.disconnect();
+          setTimeout(() => start(wrap), 500 + delayIdx * 1200);
+        }
+      });
+    }, { threshold: 0.25 });
+    io.observe(wrap);
   });
 })();
 </script>
