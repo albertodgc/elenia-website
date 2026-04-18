@@ -763,27 +763,30 @@ button { border: none; cursor: pointer; font-family: inherit; }
 .logo-item:hover { color: rgba(255,255,255,0.95); opacity: 1; }
 
 /* Image slot: drop brand files into /logos/ and they'll render here.
-   To force every mark to monochrome white (visual unity across mixed
-   logo styles), uncomment the filter below. */
+   Every logo is desaturated to monochrome white at ~65% opacity so the
+   row reads as a unified "used by" cloud rather than a loud brand strip.
+   Hover brings the logo up to full brightness. */
 .logo-item img {
   display: block;
   height: 34px;
   width: auto;
   max-width: 170px;
   object-fit: contain;
-  /* filter: brightness(0) invert(1); */
+  filter: brightness(0) invert(1);
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
 }
-/* Colored logos sit on the green hero gradient — give each one a subtle
-   white pill so they stay legible and the row reads as unified. */
+.logo-item:hover img { opacity: 1; }
+/* No pill / no background — logos sit directly on the green gradient. */
 .logo-item {
-  background: rgba(255,255,255,0.94);
-  border-radius: 10px;
-  padding: 0 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  height: 52px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  height: 40px;
   opacity: 1;
 }
-/* Missing slots fall back to plain text with no pill. */
+/* Missing slots fall back to plain text. */
 .logo-item.is-missing {
   background: transparent;
   box-shadow: none;
