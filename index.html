@@ -1492,16 +1492,32 @@ button { border: none; cursor: pointer; font-family: inherit; }
   background: var(--white);
 }
 
-.pricing-card {
-  max-width: 520px;
+.pricing-grid {
+  max-width: 1040px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+  padding-top: 14px;
+}
+
+.pricing-card {
   background: var(--white);
   border: 2px solid var(--green-200);
   border-radius: 24px;
-  padding: 48px 40px;
+  padding: 44px 32px;
   text-align: center;
   position: relative;
   box-shadow: 0 8px 40px rgba(37,211,102,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card.pro {
+  background: var(--green-50);
+  border-color: var(--green-500);
+  box-shadow: 0 14px 48px rgba(37,211,102,0.18);
 }
 
 .pricing-popular {
@@ -1516,20 +1532,29 @@ button { border: none; cursor: pointer; font-family: inherit; }
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .pricing-card h3 {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   margin-top: 12px;
+  letter-spacing: -0.01em;
+}
+
+.pricing-subtitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--green-600);
+  margin-bottom: 12px;
 }
 
 .pricing-card .pricing-desc {
-  font-size: 15px;
+  font-size: 14.5px;
   color: var(--gray-500);
-  margin-bottom: 28px;
-  line-height: 1.6;
+  margin-bottom: 24px;
+  line-height: 1.55;
 }
 
 .pricing-amount {
@@ -1567,7 +1592,24 @@ button { border: none; cursor: pointer; font-family: inherit; }
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-bottom: 36px;
+  margin-bottom: 28px;
+  flex: 1 1 auto;
+}
+
+.pricing-features-divider {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--green-600);
+  margin: 18px 0 14px 0;
+  padding-top: 14px;
+  border-top: 1px dashed var(--green-200);
+}
+
+.pricing-card.pro .pricing-features li .check {
+  background: var(--white);
 }
 
 .pricing-features li {
@@ -2129,7 +2171,9 @@ button { border: none; cursor: pointer; font-family: inherit; }
 
   .testimonial-card { width: 320px; }
 
-  .pricing-card { padding: 40px 28px; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 36px; max-width: 480px; }
+  .pricing-card { padding: 40px 26px; }
+  .pricing-card h3 { font-size: 24px; }
 }
 
 @media (max-width: 480px) {
@@ -2614,28 +2658,59 @@ button { border: none; cursor: pointer; font-family: inherit; }
     <p class="section-subtitle">Sin costos ocultos, sin comisiones, sin letra pequeña. Un precio fijo que le cabe en el bolsillo a cualquier negocio colombiano.</p>
   </div>
 
-  <div class="pricing-card">
-    <div class="pricing-popular">Precio único</div>
-    <h3>Tu recepcionista completa</h3>
-    <p class="pricing-desc">Todo incluido. Sin límites de mensajes, sin cobros por cita agendada.</p>
-    <div class="pricing-amount">
-      <span class="pricing-currency">$</span>
-      <span class="pricing-value">99.000</span>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-popular">Más popular</div>
+      <h3>Básico</h3>
+      <p class="pricing-subtitle">Tu recepcionista 24/7 por WhatsApp</p>
+      <p class="pricing-desc">Todo lo que necesitas para no perder ni un cliente. Sin costos adicionales, sin sorpresas.</p>
+      <div class="pricing-amount">
+        <span class="pricing-currency">$</span>
+        <span class="pricing-value">99.000</span>
+      </div>
+      <p class="pricing-period">pesos colombianos / mes</p>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Respuestas ilimitadas 24/7</li>
+        <li><span class="check">✓</span> Agenda citas automáticamente</li>
+        <li><span class="check">✓</span> Funciona noches, domingos y festivos</li>
+        <li><span class="check">✓</span> Panel de control con calendario</li>
+        <li><span class="check">✓</span> Resumen diario de tu agenda (en el panel)</li>
+        <li><span class="check">✓</span> Gestión de servicios, horarios y empleados</li>
+        <li><span class="check">✓</span> Sin contratos, cancela cuando quiera</li>
+      </ul>
+      <a href="https://app.elenia.app/" class="btn-primary">Empezar 7 días gratis →</a>
+      <p class="pricing-guarantee">No requiere tarjeta de crédito para la prueba</p>
     </div>
-    <p class="pricing-period">pesos colombianos / mes</p>
-    <ul class="pricing-features">
-      <li><span class="check">✓</span> Respuestas ilimitadas 24/7</li>
-      <li><span class="check">✓</span> Agenda citas automáticamente</li>
-      <li><span class="check">✓</span> Funciona noches, domingos y festivos</li>
-      <li><span class="check">✓</span> Recordatorios automáticos de citas</li>
-      <li><span class="check">✓</span> Solicita reseñas en Google Maps</li>
-      <li><span class="check">✓</span> Recupera clientes inactivos</li>
-      <li><span class="check">✓</span> Panel de control con calendario</li>
-      <li><span class="check">✓</span> Resumen diario de tu agenda</li>
-      <li><span class="check">✓</span> Sin contratos, cancela cuando quiera</li>
-    </ul>
-    <a href="https://app.elenia.app/" class="btn-primary">Empezar 7 días gratis →</a>
-    <p class="pricing-guarantee">No requiere tarjeta de crédito para la prueba</p>
+
+    <div class="pricing-card pro">
+      <div class="pricing-popular">Todo incluido</div>
+      <h3>Pro</h3>
+      <p class="pricing-subtitle">La experiencia completa para tu negocio</p>
+      <p class="pricing-desc">Tu recepcionista hace todo: atiende, recuerda, recupera y pide reseñas. Cero esfuerzo de tu parte.</p>
+      <div class="pricing-amount">
+        <span class="pricing-currency">$</span>
+        <span class="pricing-value">149.000</span>
+      </div>
+      <p class="pricing-period">pesos colombianos / mes</p>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Respuestas ilimitadas 24/7</li>
+        <li><span class="check">✓</span> Agenda citas automáticamente</li>
+        <li><span class="check">✓</span> Funciona noches, domingos y festivos</li>
+        <li><span class="check">✓</span> Panel de control con calendario</li>
+        <li><span class="check">✓</span> Resumen diario de tu agenda (en el panel)</li>
+        <li><span class="check">✓</span> Gestión de servicios, horarios y empleados</li>
+        <li><span class="check">✓</span> Sin contratos, cancela cuando quiera</li>
+      </ul>
+      <p class="pricing-features-divider">Todo lo del plan Básico, más:</p>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Recordatorios automáticos de citas por WhatsApp (24h y 2h antes)</li>
+        <li><span class="check">✓</span> Resumen diario de tu agenda por WhatsApp</li>
+        <li><span class="check">✓</span> Recupera clientes inactivos automáticamente</li>
+        <li><span class="check">✓</span> Solicita reseñas en Google Maps después de cada cita</li>
+      </ul>
+      <a href="https://app.elenia.app/" class="btn-primary">Empezar 7 días gratis →</a>
+      <p class="pricing-guarantee">No requiere tarjeta de crédito para la prueba</p>
+    </div>
   </div>
 </section>
 
