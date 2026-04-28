@@ -685,7 +685,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
         </thead>
         <tbody>
           <tr><td>Datos de contacto</td><td>Número de teléfono de WhatsApp, nombre (cuando es proporcionado por el cliente)</td><td>Privado</td></tr>
-          <tr><td>Datos de conversación</td><td>Mensajes enviados y recibidos a través de WhatsApp con el negocio</td><td>Privado</td></tr>
+          <tr><td>Datos de conversación</td><td>Mensajes de texto y notas de voz enviados y recibidos a través de WhatsApp con el negocio (las notas de voz se transcriben a texto para su procesamiento)</td><td>Privado</td></tr>
           <tr><td>Datos de citas</td><td>Fecha, hora y servicio de las citas agendadas</td><td>Semiprivado</td></tr>
           <tr><td>Datos de historial</td><td>Total de visitas, fecha de última visita</td><td>Semiprivado</td></tr>
         </tbody>
@@ -760,6 +760,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
       </p>
       <ul>
         <li>La tecnología de procesamiento automatizado se utiliza <strong>exclusivamente</strong> para comprender los mensajes de los Clientes finales y generar respuestas apropiadas en nombre del negocio.</li>
+        <li>Cuando los Clientes finales envían <strong>notas de voz</strong> por WhatsApp, estas son transcritas automáticamente a texto para que el sistema pueda comprenderlas y generar la respuesta. Las transcripciones se manejan con la misma protección que el resto de la conversación.</li>
         <li>Elenia <strong>no</strong> utiliza los datos de las conversaciones para entrenar modelos de inteligencia artificial propios.</li>
         <li>Elenia <strong>no</strong> utiliza los datos personales para fines publicitarios, de perfilamiento ni para la venta a terceros.</li>
         <li>El procesamiento de las conversaciones es realizado por Anthropic, PBC ("Anthropic") como Encargado del Tratamiento, a través de su API de procesamiento de lenguaje natural. Anthropic no retiene el contenido de las conversaciones más allá del tiempo necesario para generar la respuesta.</li>
