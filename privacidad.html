@@ -760,7 +760,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
       </p>
       <ul>
         <li>La tecnología de procesamiento automatizado se utiliza <strong>exclusivamente</strong> para comprender los mensajes de los Clientes finales y generar respuestas apropiadas en nombre del negocio.</li>
-        <li>Cuando los Clientes finales envían <strong>notas de voz</strong> por WhatsApp, estas son transcritas automáticamente a texto para que el sistema pueda comprenderlas y generar la respuesta. Las transcripciones se manejan con la misma protección que el resto de la conversación.</li>
+        <li>Cuando los Clientes finales envían <strong>notas de voz</strong> por WhatsApp, la transcripción a texto es realizada por OpenAI, L.L.C. ("OpenAI") como Encargado del Tratamiento, mediante su API Whisper. OpenAI no utiliza el contenido enviado a través de su API para entrenar sus modelos. Una vez transcritas, las notas de voz se manejan con la misma protección que el resto de la conversación.</li>
         <li>Elenia <strong>no</strong> utiliza los datos de las conversaciones para entrenar modelos de inteligencia artificial propios.</li>
         <li>Elenia <strong>no</strong> utiliza los datos personales para fines publicitarios, de perfilamiento ni para la venta a terceros.</li>
         <li>El procesamiento de las conversaciones es realizado por Anthropic, PBC ("Anthropic") como Encargado del Tratamiento, a través de su API de procesamiento de lenguaje natural. Anthropic no retiene el contenido de las conversaciones más allá del tiempo necesario para generar la respuesta.</li>
@@ -801,6 +801,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
         <tbody>
           <tr><td>Supabase, Inc.</td><td>Estados Unidos</td><td>Alojamiento de base de datos y autenticación</td><td>Datos de Usuarios, Clientes, citas y conversaciones</td></tr>
           <tr><td>Anthropic, PBC</td><td>Estados Unidos</td><td>Procesamiento de lenguaje natural para respuestas automatizadas</td><td>Contenido de las conversaciones (procesado en tiempo real, no retenido)</td></tr>
+          <tr><td>OpenAI, L.L.C.</td><td>Estados Unidos</td><td>Transcripción de notas de voz a texto (API Whisper)</td><td>Notas de voz enviadas por Clientes finales (procesadas para generar la transcripción)</td></tr>
           <tr><td>Meta Platforms, Inc.</td><td>Estados Unidos</td><td>Infraestructura de mensajería WhatsApp</td><td>Mensajes en tránsito (retenidos máximo 30 días para entrega)</td></tr>
           <tr><td>Wompi (Bancolombia)</td><td>Colombia</td><td>Procesamiento de pagos</td><td>Datos de pago del Usuario (tokenizados, no compartidos con Elenia en forma completa)</td></tr>
           <tr><td>Render Services, Inc.</td><td>Estados Unidos</td><td>Alojamiento de la infraestructura de backend</td><td>Datos procesados en tránsito</td></tr>
